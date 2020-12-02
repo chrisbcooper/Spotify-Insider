@@ -1,6 +1,7 @@
 const express = require('express');
 // const connectDB = require('./config/db');
 // const path = require('path');
+const config = require('config');
 
 const app = express();
 
@@ -23,9 +24,17 @@ const app = express();
 //   });
 // }
 
+app.get('/', function(req, res) {
+    var scopes = 'user-read-private user-read-email';
+    res.redirect('https://accounts.spotify.com/authorize' +
+      '?response_type=code' +
+      '&client_id=' + config.get('clientID') +
+      (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+      '&redirect_uri=' + encodeURIComponent(config.get('redirectURI')));
+    });
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+app.get('/success', (req, res) => {
+    res.send('The code is ' + req.query("code"));
 });
 
 const PORT = process.env.PORT || 5000;

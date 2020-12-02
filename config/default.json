@@ -1,0 +1,5 @@
+{
+    "clientID": "2a717f642d0a459384b4c2761d3684d5",
+    "clientSecret": "b0b2bb09be50447383a02ecf9397a74e",
+    "redirectURI": "https://localhost:5000/success"
+}

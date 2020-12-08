@@ -1,42 +1,60 @@
 const express = require('express');
-// const connectDB = require('./config/db');
-// const path = require('path');
 const config = require('config');
+const cors = require('cors');
+const PORT = process.env.PORT || 5000;
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const Datastore = require('nedb');
+require('dotenv').config();
 
 const app = express();
 
-//Connect Database
-//connectDB();
+app.use(cors());
+app.unsubscribe(bodyParser.json());
+app.unsubscribe(bodyParser.urlencoded({ extended: true}));
 
-//Init Middleware
-//app.use(express.json({ extended: false }));
+const authorizeSpotify = require('./routes/authorizeSpotify.js');
+const getAccessToken = require('./routes/getAccessToken.js');
+const getRecentlyPlayed = require('./routes/getRecentlyPlayed');
 
-//Define routes
-//app.use('/api/users', require('./routes/api/users'));
 
-// //Serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-//   //Set the static folder
-//   app.use(express.static('client/build'));
+const db = new Datastore();
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
 
-app.get('/', function(req, res) {
-    var scopes = 'user-read-private user-read-email';
-    res.redirect('https://accounts.spotify.com/authorize' +
-      '?response_type=code' +
-      '&client_id=' + config.get('clientID') +
-      (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-      '&redirect_uri=' + encodeURIComponent(config.get('redirectURI')));
-    });
+app.get('/login', authorizeSpotify);
+app.get('/callback', getAccessToken, (req, res, next) => {
+    db.insert(req.credentials, err => {
+        if(err) {
+            next(err);
+        } else {
+            res.redirect(`${process.env.CLIENT_URL}/?authorized=true`);
+        }
+    })
+});
+app.get('/history', (req, res) => {
+    db.find({}, (err, docs) => {
+        if (err) {
+          throw Error('Failed to retrieve documents');
+        }
 
-app.get('/success', (req, res) => {
-    res.send('The code is ' + req.query("code"));
+        const accessToken = docs[0].access_token;
+        getRecentlyPlayed(accessToken)
+          .then(data => {
+            const arr = data.map(e => ({
+              played_at: e.played_at,
+              track_name: e.track.name,
+            }));
+
+            console.log('ARR');
+            console.log(arr);
+            res.json(arr);
+          })
+          .catch(err => console.log(err));
+      });
 });
 
-const PORT = process.env.PORT || 5000;
+
+
+
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

@@ -1,10 +1,7 @@
 const express = require('express');
-const config = require('config');
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Datastore = require('nedb');
 require('dotenv').config();
 
 const app = express();
@@ -13,47 +10,21 @@ app.use(cors());
 app.unsubscribe(bodyParser.json());
 app.unsubscribe(bodyParser.urlencoded({ extended: true}));
 
-const authorizeSpotify = require('./routes/authorizeSpotify.js');
-const getAccessToken = require('./routes/getAccessToken.js');
-const getRecentlyPlayed = require('./routes/getRecentlyPlayed');
+//TOKEN INFO
+const authorizeSpotify = require('./routes/TokenInfo/authorizeSpotify.js');
+const getAccessToken = require('./routes/TokenInfo/getAccessToken.js');
+const refreshToken = require('./routes/TokenInfo/refreshToken.js');
 
+//SPOTIFY INFO
+const getRecentlyPlayedSongs = require('./routes/GetInfo/getRecentlyPlayedSongs.js');
 
-const db = new Datastore();
-
-
+//TOKEN ROUTEs
 app.get('/login', authorizeSpotify);
-app.get('/callback', getAccessToken, (req, res, next) => {
-    db.insert(req.credentials, err => {
-        if(err) {
-            next(err);
-        } else {
-            res.redirect(`${process.env.CLIENT_URL}/?authorized=true`);
-        }
-    })
-});
-app.get('/history', (req, res) => {
-    db.find({}, (err, docs) => {
-        if (err) {
-          throw Error('Failed to retrieve documents');
-        }
+app.get('/callback', getAccessToken);
+app.get('/refresh_token', refreshToken);
 
-        const accessToken = docs[0].access_token;
-        getRecentlyPlayed(accessToken)
-          .then(data => {
-            const arr = data.map(e => ({
-              played_at: e.played_at,
-              track_name: e.track.name,
-            }));
-
-            console.log('ARR');
-            console.log(arr);
-            res.json(arr);
-          })
-          .catch(err => console.log(err));
-      });
-});
-
-
+//SPOTIFY ROUTES
+app.get('/recently_played_songs', getRecentlyPlayedSongs);
 
 
 

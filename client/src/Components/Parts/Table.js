@@ -6,28 +6,34 @@ const Table = ({list}) => {
 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
 
+  useEffect(() => {
+    console.log(list);
+    if(list.length <= 2) {
+      return '';
+    }
+  },[]);
 
-    const TableItem = (item, index) => {
-        const date = new Date(item.played_at);
+  const TableItem = (item, index) => {
+      const date = new Date(item.played_at);
 
-        var hours = date.getHours();
-        var m = 'am';
-        if(hours > 12) {
-          hours -= 12;
-          m = 'p';
-        }
-        return (<tr key={item.played_at}>
-            <td>{index + 1}</td>
-            <td>{item.track_name}</td>
-            <td>{`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${date.getMinutes()}${m}`}</td>
-        </tr>)
-    };
+      var hours = date.getHours();
+      var m = 'am';
+      if(hours > 12) {
+        hours -= 12;
+        m = 'pm';
+      }
+      var minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+      return (<tr key={item.played_at}>
+          <td>{index + 1}</td>
+          <td>{item.track.name}</td>
+          <td>{`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}</td>
+      </tr>)
+  };
 
 
     
   return (
         <div>
-          <h2>Recent Tracks</h2>
           <table className="table">
             <thead>
               <tr>

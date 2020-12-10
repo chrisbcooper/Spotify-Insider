@@ -1,8 +1,7 @@
 const fetch = require('node-fetch');
-const { client_secret } = require('../Setters/credentials');
-const spotify = require('../Setters/credentials');
+const spotify = require('../../Setters/credentials');
 
-const getAccessToken = (req, res, next) => {
+const getAccessToken = (req, res) => {
 
     const {code} = req.query;
 
@@ -36,11 +35,9 @@ const getAccessToken = (req, res, next) => {
         })
         .then(res => res.json())
         .then(credentials => {
-            console.log(credentials);
-            req.credentials = credentials;
-            next();
+            res.redirect(`${process.env.CLIENT_URL}/homepage?&access_token=${credentials.access_token}&refresh_token=${credentials.refresh_token}`);
         })
-        .catch(next);
+        
     }
 
 }

@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Table from '../Parts/Table';
-import {token} from '../../Spotify';
+import TopSongs from '../Songs/TopSongs';
+import Profile from '../User/Profile';
 
-import setAuthToken from '../../Utils/setAuthToken';
+
 
 const HomePage = () => {
 
-  const [musicHistory, setMusicHistory] = useState([{}]);
-  const [currentToken, setCurrentToken] = useState('');
-
-  useEffect(() => {
-    setCurrentToken(token);
-    getMusic();
-    
-  }, [currentToken]);
 
   const getMusic = async () => {
-    setAuthToken(currentToken);
-    if(currentToken) {
-      const {data} = await axios.get('/recently_played_songs');
 
-      setMusicHistory(data.musicHistory);
-    }
 
   }
 
 
   return (
-    <div>
-        <h1>Listening History</h1>
-        {musicHistory.length !== 1 ? <Table list={musicHistory}/>: null}
-    </div>
+    <Router>
+        <Switch >
+          <Route exact path='/' component={Profile} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/top_songs' component={TopSongs}/>
+        </Switch>
+    </Router>
   );
 };
 

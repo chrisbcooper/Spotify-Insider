@@ -1,20 +1,28 @@
 import '../Styles/App.css';
-import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
+import {token} from '../Spotify';
+import {isNull} from '../Utils';
 
 import Login from './Intro/Login';
 import HomePage from './Main/HomePage';
 
+
+
 function App() {
+
+  const [localToken, setLocalToken] = useState();
+
+  useEffect(() => {
+    setLocalToken(token);
+  }, [localToken]);
+
+
+
+
   return (
     <div className="App" >
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/homepage' component={HomePage} />
-        </Switch>
-      </Router>
+      {isNull(localToken) ? <Login /> : <HomePage />}
     </div>
   );
 }

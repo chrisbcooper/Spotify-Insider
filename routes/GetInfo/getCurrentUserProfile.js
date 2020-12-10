@@ -1,10 +1,11 @@
 const request = require('request');
 
-const getRecentlyPlayedSongs = async (req, res) => {
+const getCurrentUserProfile = async (req, res) => {
     const token = req.header('x-auth-token');
+    console.log(token);
     
     const authOptions = {
-        url: 'https://api.spotify.com/v1/me/player/recently-played?limit=10',
+        url: 'https://api.spotify.com/v1/me/',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -14,12 +15,11 @@ const getRecentlyPlayedSongs = async (req, res) => {
 
     await request.get(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        const musicHistory = body.items;
-        res.send({ musicHistory });
+        console.log(body);
+        res.send({ body });
       }
     });
 
-
 };
 
-module.exports = getRecentlyPlayedSongs;
+module.exports = getCurrentUserProfile;

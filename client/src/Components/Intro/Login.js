@@ -1,10 +1,9 @@
-import React, {useState } from 'react';
+import React from 'react';
 
 
 var link = process.env.NODE_ENV != 'production' ? "http://localhost:5000/login" : '';
 const Login = () => {
 
-  const [musicHistory, setMusicHistory] = useState([{}]);
 
   return (
     <div>

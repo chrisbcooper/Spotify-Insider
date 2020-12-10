@@ -1,23 +1,24 @@
 import axios from 'axios';
-import {getParams} from '../Utils';
+
+import {getParams, isNull} from '../Utils';
 
 const expTime = 3600 * 1000;
 
 
 const setTimeStamp = () => window.localStorage.setItem('spotify_timestamp', Date.now());
 const setAccessToken = token => {
-    setTimeStamp();
+    if(token) {
+        setTimeStamp();
+    }
     window.localStorage.setItem('spotify_access_token', token);
 }
 const setRefreshToken = token => window.localStorage.setItem('spotify_refresh_token', token);
 
 export const refreshAccessToken = async () => {
     
-    if(getRefreshToken() && getRefreshToken() != 'undefined') {
+    if(isNull(getRefreshToken())) {
         try {
-            console.log('we got here tho');
             const {data} = await axios.get(`/refresh_token?refresh_token=${getRefreshToken()}`);
-            console.log('did we get here');
             const {access_token} = data;
             setAccessToken(access_token);
             window.location.reload();
@@ -39,25 +40,30 @@ export const receieveAccessToken = () => {
 
     const {accessToken, refreshToken} = getParams();
 
-    console.log(`DATE NOW ${Date.now()} - getTokenTimeStamp() ${getTokenTimestamp()}`);
-    console.log(`EQUALS ${Date.now() - getTokenTimestamp()}`)
+    var localAccessToken = getAccessToken();
+    var localRefreshToken = getRefreshToken();
+
+    if(isNull(accessToken) && isNull(refreshToken) && isNull(localAccessToken) && isNull(localRefreshToken)) {
+        console.log('its null')
+        return null;
+    }
+
     if(Date.now() - getTokenTimestamp() > expTime) {
         console.log('Acess token expired, refreshing to get new one');
         refreshAccessToken();
     }
 
-    var localAccessToken = getAccessToken();
-    var localRefreshToken = getRefreshToken();
 
-    if(!localRefreshToken|| localRefreshToken == 'undefined') {
+
+    if(isNull(localRefreshToken)) {
         setRefreshToken(refreshToken);
     }
 
-    if(!localAccessToken) {
+    if(isNull(localAccessToken)) {
         setAccessToken(accessToken);
-        console.log(`EARLY ${accessToken}`);
         return accessToken;
     }
+
     console.log(localAccessToken);
     return localAccessToken;
 }
@@ -71,3 +77,4 @@ export const logout = () => {
     window.localStorage.removeItem('spotify_refresh_token');
     window.location.reload();
   };
+

@@ -17,14 +17,16 @@ const refreshToken = require('./routes/TokenInfo/refreshToken.js');
 
 //SPOTIFY INFO
 const getRecentlyPlayedSongs = require('./routes/GetInfo/getRecentlyPlayedSongs.js');
+const getCurrentUserProfile = require('./routes/GetInfo/getCurrentUserProfile.js');
 
-//TOKEN ROUTEs
+//TOKEN ROUTES
 app.get('/login', authorizeSpotify);
 app.get('/callback', getAccessToken);
 app.get('/refresh_token', refreshToken);
 
 //SPOTIFY ROUTES
 app.get('/recently_played_songs', getRecentlyPlayedSongs);
+app.get('/current_profile', getCurrentUserProfile);
 
 
 

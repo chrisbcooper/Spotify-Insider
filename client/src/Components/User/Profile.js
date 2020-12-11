@@ -1,42 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 import {token} from '../../Spotify';
+import {isNull} from '../../Utils';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
+import ProfilePage from '../Parts/ProfilePage';
 
 const Profile = () => {
 
-  const [currentProfile, setCurrentProfile] = useState();
+  const [profile, setProfile] = useState();
+  const [profilePlaylists, setProfilePlaylists] = useState();
   const [currentToken, setCurrentToken] = useState('');
+  const {id} = useParams();
 
   useEffect(() => {
     setCurrentToken(token);
-    getUser();
+    getProfile(id);
+    getProfilePlaylists(id);
     
   }, [currentToken]);
 
-  const getUser = async () => {
+  const getProfile = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/current_profile');
-      setCurrentProfile(data.body);
+      const {data} = await axios.get(`/profile?id=${id}`);
+      console.log(data.body);
+      setProfile(data.body);
     }
   }
 
-
+  const getProfilePlaylists = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/profile_playlists?id=${id}`);
+      console.log(data.body);
+      setProfilePlaylists(data.body);
+    }
+  }
+  
   return (
-      <div>
-        {currentProfile ? ( 
-        <div>
-            <h1>{currentProfile.display_name}</h1>
-            <img src={`${currentProfile.images[0].url}`} alt=""/>
-            <p>Followers {currentProfile.followers.total}</p>
-            
-        </div>) : 
-        <Loader />}
+    <div className='center'>
+        {isNull(profile) || isNull(profilePlaylists) ? <Loader />: <ProfilePage profile={profile} playlists={profilePlaylists}/> }
     </div>
   );
 };

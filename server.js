@@ -22,6 +22,9 @@ const getTopSongs = require('./routes/GetInfo/getTopSongs.js');
 const getTopArtists = require('./routes/GetInfo/getTopArtists.js');
 const getCurrentPlaylists = require('./routes/GetInfo/getCurrentPlaylists.js');
 const getPlaylist = require('./routes/GetInfo/getPlaylist.js');
+const getProfile = require('./routes/GetInfo/getProfile.js');
+const getProfilePlaylists = require('./routes/GetInfo/getProfilePlaylists.js');
+const getSong = require('./routes/GetInfo/getSong.js');
 
 //TOKEN ROUTES
 app.get('/api/login', authorizeSpotify);
@@ -35,6 +38,9 @@ app.get('/api/top_songs', getTopSongs);
 app.get('/api/top_artists', getTopArtists);
 app.get('/api/current_playlists', getCurrentPlaylists);
 app.get('/api/playlist', getPlaylist);
+app.get('/api/profile', getProfile);
+app.get('/api/profile_playlists', getProfilePlaylists);
+app.get('/api/song', getSong);
 
 
 

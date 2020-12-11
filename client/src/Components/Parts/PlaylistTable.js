@@ -24,6 +24,7 @@ const PlaylistTable = ({playlist}) => {
     <div>
         <h1>{playlist.name}</h1>
         <img src={`${playlist.images[0].url}`} alt="" className='playlist-page-pic'/>
+        <h1>Created by <a href={`/profile/${playlist.owner.id}`}>{playlist.owner.display_name}</a></h1>
         <table className="table">
             <thead>
               <tr>

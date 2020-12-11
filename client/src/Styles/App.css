@@ -12,3 +12,8 @@
 .left {
   text-align: left;
 }
+
+.playlist-pic {
+  height: 60px;
+  width: 60px;
+}

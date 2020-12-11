@@ -5,6 +5,7 @@ import {token} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import TopSongsTable from '../Parts/TopSongsTable';
+import Loader from '../Parts/Loader';
 
 const TopSongs = () => {
 
@@ -40,7 +41,7 @@ const TopSongs = () => {
             <button onClick={changeList} type="button" name='medium' className="btn btn-secondary">Last 6 Months</button>
             <button onClick={changeList} type="button" name='long' className="btn btn-secondary">All Time</button>
         </div>
-        {topSongs.length !== 1 ? <TopSongsTable list={topSongs}/>: null}
+        {topSongs.length !== 1 ? <TopSongsTable list={topSongs}/>: <Loader />}
     </div>
   );
 };

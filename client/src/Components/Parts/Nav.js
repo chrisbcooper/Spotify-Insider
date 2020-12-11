@@ -12,6 +12,7 @@ const NavHeader = () => {
             <Nav.Link href="/recently_played_songs">Recent</Nav.Link>
             <Nav.Link href="/top_songs">Top Songs</Nav.Link>
             <Nav.Link href="/top_artists">Top Artists</Nav.Link>
+            <Nav.Link href='/current_playlists'>Playlists</Nav.Link>
             </Nav>
         </Navbar.Collapse>
     </Navbar>

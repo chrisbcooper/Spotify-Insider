@@ -5,6 +5,7 @@ import {token} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import TopArtistsTable from '../Parts/TopArtistsTable';
+import Loader from '../Parts/Loader';
 
 const TopArtists = () => {
 
@@ -14,8 +15,6 @@ const TopArtists = () => {
 
   useEffect(() => {
     setCurrentToken(token);
-    console.log('TOP Artists');
-    console.log(topArtists);
     getArtists(currentTerm);
     
   }, [currentToken, currentTerm]);
@@ -42,7 +41,7 @@ const TopArtists = () => {
             <button onClick={changeList} type="button" name='medium' className="btn btn-secondary">Last 6 Months</button>
             <button onClick={changeList} type="button" name='long' className="btn btn-secondary">All Time</button>
         </div>
-        {topArtists.length !== 1 ? <TopArtistsTable list={topArtists}/>: null}
+        {topArtists.length !== 1 ? <TopArtistsTable list={topArtists}/>: <Loader />}
     </div>
   );
 };

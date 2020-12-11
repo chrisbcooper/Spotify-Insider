@@ -6,7 +6,8 @@ import Profile from '../User/Profile';
 import Nav from '../Parts/Nav';
 import TopSongs from '../Songs/TopSongs';
 import TopArtists from '../Artists/TopArtists';
-import Playlists from '../Playlists/CurrentPlaylists';
+import CurrentPlaylists from '../Playlists/CurrentPlaylists';
+import Playlist from '../Playlists/Playlist';
 
 
 
@@ -24,7 +25,8 @@ const HomePage = () => {
             <Route exact path='/recently_played_songs' component={RecentlyPlayedSongs}/>
             <Route exact path='/top_songs' component={TopSongs} />
             <Route exact path='/top_artists' component={TopArtists} />
-            <Route exact path='/current_playlists' component={Playlists} />
+            <Route exact path='/current_playlists' component={CurrentPlaylists} />
+            <Route exact path='/playlist/:id' component={Playlist} />
           </Switch>
           </section>
       </Router>

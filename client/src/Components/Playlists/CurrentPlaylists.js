@@ -28,7 +28,7 @@ const CurrentPlaylists = () => {
   }
   
   return (
-    <div>
+    <div className='center'>
         <h1>My Playlists</h1>
         {currentPlaylists.length !== 1 ? <CurrentPlaylistsTable list={currentPlaylists}/>: <Loader />}
     </div>

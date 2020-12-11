@@ -12,7 +12,7 @@ const CurrentPlaylistsTable = ({list}) => {
 
       return (
           <div className='col' key={index}>
-            <img src={`${item.images[0].url}`} className='playlist-pic' alt=""/>
+            <a href={`/playlist/${item.id}`}><img src={`${item.images[0].url}`} className='playlist-pic' alt=""/></a>
             <p>{item.name}</p>
           </div>
       );

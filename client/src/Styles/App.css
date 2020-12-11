@@ -13,7 +13,18 @@
   text-align: left;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .playlist-pic {
   height: 60px;
   width: 60px;
+}
+
+.playlist-page-pic {
+  height: 200px;
+  width: 200px;
 }

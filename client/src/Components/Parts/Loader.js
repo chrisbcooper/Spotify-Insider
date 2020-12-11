@@ -1,13 +1,8 @@
 import React from 'react';
+import ReactLoading from 'react-loading';
 
-const Loader = () => {
-
-    return (
-        <div>
-            <h1>LOADING</h1>
-        </div>
-    )
-  
-};
+const Loader = () => (
+    <ReactLoading type={'spinningBubbles'} color={'black'}/>
+);
 
 export default Loader;

@@ -16,17 +16,17 @@ const setRefreshToken = token => window.localStorage.setItem('spotify_refresh_to
 
 export const refreshAccessToken = async () => {
     
-    if(isNull(getRefreshToken())) {
+    if(!isNull(getRefreshToken())) {
         try {
             const {data} = await axios.get(`/refresh_token?refresh_token=${getRefreshToken()}`);
             const {access_token} = data;
+
             setAccessToken(access_token);
             window.location.reload();
             return;
         } catch(e) {
             console.log(e);
         }
-        
     }
     
 }
@@ -44,7 +44,6 @@ export const receieveAccessToken = () => {
     var localRefreshToken = getRefreshToken();
 
     if(isNull(accessToken) && isNull(refreshToken) && isNull(localAccessToken) && isNull(localRefreshToken)) {
-        console.log('its null')
         return null;
     }
 
@@ -64,7 +63,6 @@ export const receieveAccessToken = () => {
         return accessToken;
     }
 
-    console.log(localAccessToken);
     return localAccessToken;
 }
 

@@ -23,7 +23,6 @@ const Profile = () => {
     if(currentToken) {
       const {data} = await axios.get('/current_profile');
       setCurrentProfile(data.body);
-      console.log(currentProfile);
     }
   }
 

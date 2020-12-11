@@ -18,15 +18,20 @@ const refreshToken = require('./routes/TokenInfo/refreshToken.js');
 //SPOTIFY INFO
 const getRecentlyPlayedSongs = require('./routes/GetInfo/getRecentlyPlayedSongs.js');
 const getCurrentUserProfile = require('./routes/GetInfo/getCurrentUserProfile.js');
+const getTopSongs = require('./routes/GetInfo/getTopSongs.js');
+const getTopArtists = require('./routes/GetInfo/getTopArtists.js');
 
 //TOKEN ROUTES
-app.get('/login', authorizeSpotify);
-app.get('/callback', getAccessToken);
-app.get('/refresh_token', refreshToken);
+app.get('/api/login', authorizeSpotify);
+app.get('/api/callback', getAccessToken);
+app.get('/api/refresh_token', refreshToken);
 
 //SPOTIFY ROUTES
-app.get('/recently_played_songs', getRecentlyPlayedSongs);
-app.get('/current_profile', getCurrentUserProfile);
+app.get('/api/recently_played_songs', getRecentlyPlayedSongs);
+app.get('/api/current_profile', getCurrentUserProfile);
+app.get('/api/top_songs', getTopSongs);
+app.get('/api/top_artists', getTopArtists);
+
 
 
 

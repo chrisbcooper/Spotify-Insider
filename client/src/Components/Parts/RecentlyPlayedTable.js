@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import format from 'date-fns/format';
+import React, { useEffect } from 'react';
 
-const Table = ({list}) => {
+const RecentlyPlayedTable = ({list}) => {
 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
 
   useEffect(() => {
-    console.log(list);
     if(list.length <= 2) {
       return '';
     }
@@ -24,8 +21,8 @@ const Table = ({list}) => {
       }
       var minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
       return (<tr key={item.played_at}>
-          <td>{index + 1}</td>
-          <td>{item.track.name}</td>
+          <td><img src={`${item.track.album.images[2].url}`} alt="al"/></td>
+          <td className='left' >{item.track.name}</td>
           <td>{`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}</td>
       </tr>)
   };
@@ -50,4 +47,4 @@ const Table = ({list}) => {
       );
 };
 
-export default Table;
+export default RecentlyPlayedTable;

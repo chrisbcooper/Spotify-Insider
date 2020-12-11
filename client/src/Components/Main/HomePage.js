@@ -10,6 +10,7 @@ import CurrentPlaylists from '../Playlists/CurrentPlaylists';
 import Playlist from '../Playlists/Playlist';
 import Profile from '../User/Profile';
 import Song from '../Songs/Song';
+import Artist from '../Artists/Artist';
 
 
 
@@ -31,6 +32,7 @@ const HomePage = () => {
             <Route exact path='/current_playlists' component={CurrentPlaylists} />
             <Route exact path='/playlist/:id' component={Playlist} />
             <Route exact path='/song/:id' component={Song} />
+            <Route exact path='/artist/:id' component={Artist} />
           </Switch>
           </section>
       </Router>

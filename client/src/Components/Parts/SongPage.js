@@ -16,7 +16,7 @@ const SongPage = ({song}) => {
     <div>
         <h1>{song.name}</h1>
         <img src={`${song.album.images[0].url}`} alt="" class='playlist-page-pic'/>
-        <h3>By: {song.artists[0].name}</h3>
+        <h3>By: <a href={`/artist/${song.artists[0].id}`}>{song.artists[0].name}</a></h3>
         <p>Relased: {song.album.release_date}</p>
     </div>
       );

@@ -11,6 +11,8 @@ import SongPage from '../Parts/SongPage';
 
 const Song = () => {
 
+    //THERE ARE MORE SONG ENDPOINTS
+
   const [song, setSong] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const {id} = useParams();

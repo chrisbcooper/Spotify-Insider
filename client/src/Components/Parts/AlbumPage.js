@@ -14,7 +14,7 @@ const AlbumPage = ({album}) => {
   const TableItem = (item, index) => {
     return (<tr key={index}>
         <td>#{index + 1}</td>
-        <td >{item.name}</td>
+        <td><a href={`/song/${item.id}`}>{item.name}</a></td>
     </tr>)
 };
 
@@ -23,7 +23,7 @@ const AlbumPage = ({album}) => {
     <div>
         <h1>{album.name}</h1>
         <img src={`${album.images[0].url}`} alt="" className='playlist-page-pic'/>
-        <h1>By: {album.artists.map((item) => (<p>{item.name}</p>))}</h1>
+        <h1>By: {album.artists.map((item) => (<p><a href={`/artist/${item.id}`}>{item.name}</a></p>))}</h1>
         <table className="table">
             <thead>
               <tr>

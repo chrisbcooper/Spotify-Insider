@@ -14,7 +14,7 @@ const PlaylistTable = ({playlist}) => {
     return (<tr key={index}>
         <td>#{index + 1}</td>
         <td><a href={`/album/${item.track.album.id}`}><img src={`${item.track.album.images[2].url}`} alt="al"/></a></td>
-        <td >{item.track.name}</td>
+        <td><a href={`/song/${item.track.id}`}>{item.track.name}</a></td>
     </tr>)
 };
 

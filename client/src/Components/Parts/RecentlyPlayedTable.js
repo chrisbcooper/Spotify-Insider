@@ -22,7 +22,7 @@ const RecentlyPlayedTable = ({list}) => {
       var minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
       return (<tr key={item.played_at}>
           <td><a href={`/song/${item.track.id}`}><img src={`${item.track.album.images[2].url}`} alt="al"/></a></td>
-          <td className='left' >{item.track.name}</td>
+          <td className='left'><a href={`/song/${item.track.id}`}>{item.track.name}</a></td>
           <td>{`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}</td>
       </tr>)
   };

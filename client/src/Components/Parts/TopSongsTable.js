@@ -6,13 +6,14 @@ const TopSongsTable = ({list}) => {
     if(list.length <= 2) {
       return '';
     }
+    console.log(list);
   },[list.length]);
 
   const TableItem = (item, index) => {
       return (<tr key={index}>
           <td>#{index + 1}</td>
-          <td><img src={`${item.album.images[2].url}`} alt="al"/></td>
-          <td >{item.name}</td>
+          <td><a href={`/album/${item.album.id}`}><img src={`${item.album.images[2].url}`} alt="al"/></a></td>
+          <td ><a href={`/song/${item.id}`}>{item.name}</a></td>
       </tr>)
   };
 

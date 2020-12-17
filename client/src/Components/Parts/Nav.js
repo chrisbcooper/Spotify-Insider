@@ -1,24 +1,21 @@
 import React from 'react';
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import '../../Styles/App.css';
+import {logout} from '../../Spotify';
 
 const NavHeader = () => {
 
     return (
-        <Navbar bg="dark" expand="lg" variant='dark'>
-        <Navbar.Brand href="/profile">Spotify Insider</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-            <Nav.Link href="/recently_played_songs">Recent</Nav.Link>
-            <Nav.Link href="/top_songs">Top Songs</Nav.Link>
-            <Nav.Link href="/top_artists">Top Artists</Nav.Link>
-            <Nav.Link href='/current_playlists'>Playlists</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
+        <nav className='sidenav'>
+            <a href='/recently_played_songs'>Recent</a>
+            <a href='/top_songs'>Recent</a>
+            <a href='/top_artists'>Recent</a>
+            <a href='/current_playlists'>Recent</a>
+        </nav>
     );
 
 
 }
+
 
 export default NavHeader;

@@ -11,7 +11,7 @@ import Playlist from '../Playlists/Playlist';
 import Profile from '../User/Profile';
 import Song from '../Songs/Song';
 import Artist from '../Artists/Artist';
-import Album from '../Songs/Album';
+import Album from '../Albums/Album';
 
 
 
@@ -19,10 +19,10 @@ const HomePage = () => {
 
 
   return (
-    <Fragment>
+    <div className='main'>
       <Router>
         <Nav />
-          <section className='container'>
+        <div className="container">
           <Switch >
             <Route exact path='/' component={CurrentProfile} />
             <Route exact path='/profile' component={CurrentProfile} />
@@ -36,9 +36,9 @@ const HomePage = () => {
             <Route exact path='/artist/:id' component={Artist} />
             <Route exact path='/album/:id' component={Album} />
           </Switch>
-          </section>
+          </div>
       </Router>
-    </Fragment>
+    </div>
   );
 };
 

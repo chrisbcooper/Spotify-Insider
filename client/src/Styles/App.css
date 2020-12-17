@@ -1,12 +1,62 @@
+/* Global Styles */
+:root {
+  --primary-color: #1db954;
+  --dark-grey-color: rgb(20, 20, 20);
+  --light-grey-color: rgb(155, 155, 155);
+  --nav-width: 100px;
+  --nav-height: 50px;
+  --desktop: 1200px;
+  --notebook: 1000px;
+  --tablet: 768px;
+  --thone: 600px;
+  --phablet: 480;
+  --phone: 376;
+  --tiny: 330;
+}
+
+.App {
+  background-color: var(--dark-grey-color);
+  margin-top: 0;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  padding-left: var(--nav-width);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-left: 0;
+    padding-bottom: var(--nav-height);
+  }
+}
+
 /* Utilities */
 .container {
-  max-width: 1100px;
-  margin: auto;
-  overflow: hidden;
-  padding: 0 2rem;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
+  padding: 80px;
+  margin: 0 auto;
+  max-width: 1400px;
+  min-height: 100vh;
   text-align: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 50px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 25px;
+  }
 }
 
 .left {
@@ -33,4 +83,47 @@
   height: 150px;
   width: 150px;
   border-radius: 50%;
+}
+
+/* NAVBAR */
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: var(--nav-width); /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: black; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    min-height: var(--nav-height);
+    height: var(--nav-height);
+    flex-direction: row;
+  }
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
 }

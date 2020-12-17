@@ -7,7 +7,7 @@ import {isNull} from '../../Utils';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
-import AlbumPage from '../Parts/AlbumPage';
+import AlbumPage from './AlbumPage';
 
 const Album = () => {
 

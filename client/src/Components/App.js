@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import {token} from '../Spotify';
 import {isNull} from '../Utils';
 
-import Login from './Intro/Login';
+import Login from './Main/Login';
 import HomePage from './Main/HomePage';
 
 
@@ -17,9 +17,6 @@ function App() {
   useEffect(() => {
     setLocalToken(token);
   }, [localToken]);
-
-
-
 
   return (
     <div className="App" >

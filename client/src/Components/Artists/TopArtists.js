@@ -4,7 +4,7 @@ import axios from 'axios';
 import {token} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
 
-import TopArtistsTable from '../Parts/TopArtistsTable';
+import TopArtistsTable from './TopArtistsTable';
 import Loader from '../Parts/Loader';
 
 const TopArtists = () => {

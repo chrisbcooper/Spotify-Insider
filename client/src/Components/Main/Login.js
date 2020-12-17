@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-var link = process.env.NODE_ENV != 'production' ? "http://localhost:5000/login" : '';
+var link = process.env.NODE_ENV != 'production' ? "http://localhost:5000/api/login" : '';
 const Login = () => {
 
 

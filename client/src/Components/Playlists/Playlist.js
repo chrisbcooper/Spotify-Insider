@@ -7,7 +7,7 @@ import {isNull} from '../../Utils';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
-import PlaylistTable from '../Parts/PlaylistTable'
+import PlaylistTable from './PlaylistTable'
 
 const Playlist = () => {
 

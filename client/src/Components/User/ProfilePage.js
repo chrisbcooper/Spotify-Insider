@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import {isNull} from '../../Utils';
 
-import CurrentPlaylistsTable from '../Parts/CurrentPlaylistsTable';
+import CurrentPlaylistsTable from '../Playlists/CurrentPlaylistsTable';
 
 const ProfilePage = ({profile, playlists}) => {
 

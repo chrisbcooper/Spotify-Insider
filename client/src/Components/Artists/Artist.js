@@ -7,8 +7,7 @@ import {isNull} from '../../Utils';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
-import SongPage from '../Parts/ArtistPage';
-import ArtistPage from '../Parts/ArtistPage';
+import ArtistPage from './ArtistPage';
 
 const Artist = () => {
 

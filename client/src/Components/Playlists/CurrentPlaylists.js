@@ -4,7 +4,7 @@ import axios from 'axios';
 import {token} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
 
-import CurrentPlaylistsTable from '../Parts/CurrentPlaylistsTable';
+import CurrentPlaylistsTable from './CurrentPlaylistsTable';
 import Loader from '../Parts/Loader';
 
 const CurrentPlaylists = () => {

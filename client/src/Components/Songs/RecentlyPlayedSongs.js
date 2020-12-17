@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import RecentlyPlayedTable from '../Parts/RecentlyPlayedTable';
+import RecentlyPlayedTable from './RecentlyPlayedTable';
 import Loader from '../Parts/Loader';
 
 import {token} from '../../Spotify';

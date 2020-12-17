@@ -7,7 +7,7 @@ import {isNull} from '../../Utils';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
-import ProfilePage from '../Parts/ProfilePage';
+import ProfilePage from './ProfilePage';
 
 const Profile = () => {
 

@@ -20,6 +20,7 @@ const Profile = () => {
     setCurrentToken(token);
     getProfile(id);
     getProfilePlaylists(id);
+    console.log(id);
     
   }, [currentToken]);
 

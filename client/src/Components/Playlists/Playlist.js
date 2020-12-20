@@ -31,7 +31,7 @@ const Playlist = () => {
   }
   
   return (
-    <div className='center'>
+    <div>
         {!isNull(playlist) ? <PlaylistTable playlist={playlist}/>: <Loader />}
     </div>
   );

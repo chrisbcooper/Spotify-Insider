@@ -8,37 +8,49 @@ const PlaylistTable = ({playlist}) => {
     if(isNull(playlist)) {
         return '';
     }
+    console.log(playlist);
   },[]);
 
   const TableItem = (item, index) => {
-    return (<tr key={index}>
-        <td>#{index + 1}</td>
-        <td><a href={`/album/${item.track.album.id}`}><img src={`${item.track.album.images[2].url}`} alt="al"/></a></td>
-        <td><a href={`/song/${item.track.id}`}>{item.track.name}</a></td>
-    </tr>)
+
+    var seconds = Math.floor(item.track.duration_ms / 1000);
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds - (60 * minutes);
+    seconds = seconds > 10 ? seconds : `0${seconds}`;
+
+
+    return (
+    <li key={index}>
+      <a className='link-in-list' href={`/song/${item.track.id}`}>
+        <span className='table-pic-span'>
+          <img className='playlist-pic' src={`${item.track.album.images[0].url}`} alt="al"/>
+        </span>
+        <div className='name-and-time'>
+          <div className='left wrap'>
+            <p>{item.track.name}</p>
+            <p>{item.track.artists[0].name} <span>&#183;</span> {item.track.album.name}</p>
+          </div>
+          <div>
+            {`${minutes}:${seconds}`}
+          </div>
+        </div>
+      </a>
+    </li>)
 };
 
 
-    
-  return (
-    <div>
-        <h1>{playlist.name}</h1>
-        <img src={`${playlist.images[0].url}`} alt="" className='playlist-page-pic'/>
-        <h1>Created by <a href={`/profile/${playlist.owner.id}`}>{playlist.owner.display_name}</a></h1>
-        <table className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Album </th>
-                <th>Song Title</th>
-              </tr>
-            </thead>
-            <tbody>
-                {playlist.tracks.items.map((item, index) => TableItem(item, index))}
-            </tbody>
-          </table>
+  
+return (
+  <div>
+    <h3>{playlist.name}</h3>
+    <a href={`/profile/${playlist.owner.id}`}><p>By: {playlist.owner.display_name}</p></a>
+    <div style={{marginTop: '30px'}}>
+      <ol>
+        {playlist.tracks.items.map((item, index) => TableItem(item, index))}
+      </ol>
     </div>
-      );
+  </div>
+    );
 };
 
 export default PlaylistTable;

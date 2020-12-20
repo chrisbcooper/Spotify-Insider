@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import {isNull} from '../../Utils';
+import {logout} from '../../Spotify';
 
 import CurrentPlaylistsTable from '../Playlists/CurrentPlaylistsTable';
 

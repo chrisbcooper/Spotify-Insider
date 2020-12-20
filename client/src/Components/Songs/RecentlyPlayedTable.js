@@ -8,6 +8,7 @@ const RecentlyPlayedTable = ({list}) => {
     if(list.length <= 2) {
       return '';
     }
+    console.log(list);
   },[]);
 
   const TableItem = (item, index) => {
@@ -24,11 +25,11 @@ const RecentlyPlayedTable = ({list}) => {
       <li key={item.played_at}>
         <a className='link-in-list' href={`/song/${item.track.id}`}>
           <span className='table-pic-span'>
-            <img src={`${item.track.album.images[2].url}`} alt="al"/>
+            <img className='playlist-pic' src={`${item.track.album.images[0].url}`} alt="al"/>
           </span>
           <div className='name-and-time'>
             <div className='left'>
-              {item.track.name}
+              <p  >{item.track.name}</p>
             </div>
             <div>
               {`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}

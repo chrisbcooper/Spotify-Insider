@@ -12,16 +12,15 @@ const NavHeader = () => {
                 <div>
                     <a href='/'><img class='spotify-icon' src={SpotifyIcon} alt=""/></a>
                 </div>
-                <div>
+                <div className='horizontal-div'>
                     <a href='/recently_played_songs'><div className='icon-div'><FontAwesomeIcon className='icon' icon={faHistory} /></div> Recent</a>
                     <a href='/top_songs'><div className='icon-div'><FontAwesomeIcon className='icon' icon={faMusic} /></div>Top Songs</a>
                     <a href='/top_artists'><div className='icon-div'><FontAwesomeIcon className='icon' icon={faUser} /></div>Top Artists</a>
                     <a href='/current_playlists'><div className='icon-div'><FontAwesomeIcon className='icon' icon={faListUl} /></div>Playlists</a>
                 </div>
-                <div>
+                <div className='logout-nav'>
                     <button onClick={logout}><div className='icon-div'><FontAwesomeIcon className='icon' icon={faSignOutAlt} /></div>Logout</button>
                 </div>
-            
         </nav>
     );
 

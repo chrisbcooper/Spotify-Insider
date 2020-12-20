@@ -14,7 +14,7 @@ const TopSongsTable = ({list}) => {
     <li key={index}>
       <a className='link-in-list' href={`/song/${item.id}`}>
         <span className='table-pic-span'>
-          <img src={`${item.album.images[2].url}`} alt="al"/>
+          <img className='playlist-pic' src={`${item.album.images[0].url}`} alt="al"/>
         </span>
         <div className='name-and-time'>
           <div className='left'>

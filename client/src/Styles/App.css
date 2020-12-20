@@ -103,13 +103,13 @@ a:hover {
 /* NAVBAR */
 
 .sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: var(--nav-width); /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  top: 0; /* Stay at the top */
+  height: 100%;
+  width: var(--nav-width);
+  position: fixed;
+  top: 0;
   left: 0;
-  background-color: black; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  background-color: black;
+  overflow-x: hidden;
   text-align: center;
   align-items: center;
   display: flex;
@@ -118,20 +118,10 @@ a:hover {
   box-shadow: rgb(0, 0, 1) 0px 0px 10px;
   z-index: 2;
 }
-
-@media (max-width: 768px) {
-  .sidenav {
-    top: auto;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    min-height: var(--nav-height);
-    height: var(--nav-height);
-    flex-direction: row;
-  }
+.spotify-icon {
+  height: 50px;
 }
 
-/* The navigation menu links */
 .sidenav a,
 button {
   margin: 30px auto;
@@ -160,18 +150,46 @@ button {
   transform: rotateY(360deg);
 }
 
-.spotify-icon {
-  height: 50px;
-}
-
 .sidenav button {
   border: none;
 }
 
-/* When you mouse over the navigation links, change their color */
 .sidenav a:hover,
 button:hover {
   color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    min-height: var(--nav-height);
+    height: var(--nav-height);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .spotify-icon {
+    height: 30px;
+  }
+
+  .sidenav a,
+  button {
+    display: inline;
+    transition: 1s;
+    font-size: 0.7rem;
+  }
+
+  .horizontal-div {
+    flex-direction: row;
+    display: flex;
+  }
+
+  .logout-nav {
+    display: none;
+  }
 }
 
 /* SONG LIST */
@@ -194,6 +212,11 @@ li {
   display: grid;
   grid-template-columns: 1fr max-content;
   gap: 10px;
+}
+
+.name-and-time p {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table-pic-span {
@@ -254,4 +277,8 @@ li {
   align-items: center;
   text-align: center;
   margin-bottom: 30px;
+}
+
+.logout-button {
+  background-color: transparent;
 }

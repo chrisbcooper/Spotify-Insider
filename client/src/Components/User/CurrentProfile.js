@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-import {token} from '../../Spotify';
+import {token, logout} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
 
 import Loader from '../Parts/Loader';
@@ -34,6 +33,7 @@ const CurrentProfile = () => {
             <h1>{userProfile.display_name}</h1>
             <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
             <p>Followers {userProfile.followers.total}</p>
+            <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>
             
         </div>) : 
         <Loader />}

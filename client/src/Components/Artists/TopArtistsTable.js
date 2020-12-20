@@ -10,24 +10,24 @@ const TopArtistsTable = ({list}) => {
   },[list.length]);
 
   const TableItem = (item, index) => {
-      return (<tr key={index}>
-          <td>#{index + 1}</td>
-          <td><a href={`/artist/${item.id}`}><img src={`${item.images[2].url}`} alt="al"/></a></td>
-          <td ><a href={`/artist/${item.id}`}>{item.name}</a></td>
-      </tr>)
-  };
+    return (
+      <div key={index} className='col-lg-3 col-md-4 col-sm-6 artist-col'>
+        <a href={`/artist/${item.id}`}>
+            <img className='profile-pic' src={`${item.images[0].url}`} alt="al"/>
+            <p style={{margin: '10px'}}>{item.name}</p>
+        </a>
+    </div>)
+};
 
 
-    
-  return (
-        <div>
-          <table className="table">
-            <tbody>
-                {list.map((item, index) => TableItem(item, index))}
-            </tbody>
-          </table>
-        </div>
-      );
+  
+return (
+  <div style={{marginTop: '30px'}} className='artist-grid'>
+    <div className="row">
+      {list.map((item, index) => TableItem(item, index))}
+    </div>
+  </div>
+    );
 };
 
 export default TopArtistsTable;

@@ -15,15 +15,16 @@
 }
 
 .App {
-  background-color: var(--dark-grey-color);
   margin-top: 0;
   display: block;
+  height: 100%;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: var(--dark-grey-color);
 }
 
 .main {
@@ -45,6 +46,7 @@
   min-height: 100vh;
   text-align: center;
   align-items: center;
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -57,6 +59,15 @@
   .container {
     padding: 30px 25px;
   }
+}
+
+a {
+  color: var(--light-grey-color);
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .left {
@@ -80,9 +91,10 @@
 }
 
 .profile-pic {
-  height: 150px;
-  width: 150px;
+  height: 125px;
+  width: 125px;
   border-radius: 50%;
+  margin: 0 auto;
 }
 
 /* NAVBAR */
@@ -100,6 +112,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: rgb(0, 0, 1) 0px 0px 10px;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -126,4 +140,86 @@
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
+}
+
+/* SONG LIST */
+
+ul {
+  display: block;
+}
+
+li {
+  display: block;
+}
+
+.link-in-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin-bottom: 30px;
+}
+
+.name-and-time {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 10px;
+}
+
+.table-pic-span {
+  padding-right: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.button-in-group {
+  border: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+  color: var(--light-grey-color);
+}
+
+.button-in-group:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.button-in-group:focus,
+.button-in-group:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.selected {
+  color: white;
+  text-decoration: underline;
+}
+
+.far-right-button {
+  padding-right: 0px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn-group {
+    margin: 30px auto;
+  }
+}
+
+.artist-col {
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
 }

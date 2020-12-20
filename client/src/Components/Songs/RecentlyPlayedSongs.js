@@ -30,7 +30,7 @@ const RecentlyPlayedSongs = () => {
 
   return (
     <div>
-        <h1>10 Most Recently Played Songs</h1>
+        <h1>Recently Played Songs</h1>
         {musicHistory.length !== 1 ? <RecentlyPlayedTable list={musicHistory}/>: <Loader />}
     </div>
   );

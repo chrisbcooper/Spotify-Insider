@@ -7,10 +7,11 @@ const NavHeader = () => {
 
     return (
         <nav className='sidenav'>
+            <a href='/'>Home</a>
             <a href='/recently_played_songs'>Recent</a>
-            <a href='/top_songs'>Recent</a>
-            <a href='/top_artists'>Recent</a>
-            <a href='/current_playlists'>Recent</a>
+            <a href='/top_songs'>Top Songs</a>
+            <a href='/top_artists'>Top Artists</a>
+            <a href='/current_playlists'>Playlists</a>
         </nav>
     );
 

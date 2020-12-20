@@ -20,30 +20,32 @@ const RecentlyPlayedTable = ({list}) => {
         m = 'pm';
       }
       var minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
-      return (<tr key={item.played_at}>
-          <td><a href={`/song/${item.track.id}`}><img src={`${item.track.album.images[2].url}`} alt="al"/></a></td>
-          <td className='left'><a href={`/song/${item.track.id}`}>{item.track.name}</a></td>
-          <td>{`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}</td>
-      </tr>)
+      return (
+      <li key={item.played_at}>
+        <a className='link-in-list' href={`/song/${item.track.id}`}>
+          <span className='table-pic-span'>
+            <img src={`${item.track.album.images[2].url}`} alt="al"/>
+          </span>
+          <div className='name-and-time'>
+            <div className='left'>
+              {item.track.name}
+            </div>
+            <div>
+              {`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}
+            </div>
+          </div>
+        </a>
+      </li>)
   };
 
 
     
   return (
-        <div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Song Title</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody>
-                {list.map((item, index) => TableItem(item, index))}
-            </tbody>
-          </table>
-        </div>
+    <div style={{marginTop: '30px'}}>
+      <ul>
+        {list.map((item, index) => TableItem(item, index))}
+      </ul>
+    </div>
       );
 };
 

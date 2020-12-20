@@ -20,11 +20,14 @@
   height: 100%;
 }
 
+body {
+  background-color: var(--dark-grey-color);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: var(--dark-grey-color);
 }
 
 .main {
@@ -129,16 +132,45 @@ a:hover {
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sidenav a,
+button {
+  margin: 30px auto;
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 0.9rem;
   color: #818181;
   display: block;
+  background-color: black;
+  text-align: center;
+  align-items: center;
+}
+
+.icon {
+  text-align: center;
+  align-items: center;
+}
+
+.icon-div {
+  display: block;
+  text-align: center;
+}
+
+.icon-div:hover {
+  transition: 1s;
+  transform: rotateY(360deg);
+}
+
+.spotify-icon {
+  height: 50px;
+}
+
+.sidenav button {
+  border: none;
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
+.sidenav a:hover,
+button:hover {
   color: #f1f1f1;
 }
 

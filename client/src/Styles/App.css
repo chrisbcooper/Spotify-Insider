@@ -190,6 +190,14 @@ button:hover {
   .logout-nav {
     display: none;
   }
+
+  .wrap {
+    font-size: 0.9rem;
+  }
+
+  li {
+    margin-bottom: 30px;
+  }
 }
 
 /* SONG LIST */
@@ -206,6 +214,7 @@ li {
   display: grid;
   grid-template-columns: auto 1fr;
   margin-bottom: 30px;
+  height: 50px;
 }
 
 .name-and-time {
@@ -217,6 +226,14 @@ li {
 .name-and-time p {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.wrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-direction: column;
 }
 
 .table-pic-span {
@@ -271,6 +288,15 @@ li {
   .btn-group {
     margin: 30px auto;
   }
+
+  .table-pic-span img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .name-and-time p {
+    margin-bottom: 5px;
+  }
 }
 
 .artist-col {
@@ -281,4 +307,8 @@ li {
 
 .logout-button {
   background-color: transparent;
+}
+
+.loader {
+  margin: 100px auto;
 }

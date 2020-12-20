@@ -10,6 +10,13 @@ const TopSongsTable = ({list}) => {
   },[list.length]);
 
   const TableItem = (item, index) => {
+
+    var seconds = Math.floor(item.duration_ms / 1000);
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds - (60 * minutes);
+    seconds = seconds > 10 ? seconds : `0${seconds}`;
+
+
     return (
     <li key={index}>
       <a className='link-in-list' href={`/song/${item.id}`}>
@@ -17,11 +24,12 @@ const TopSongsTable = ({list}) => {
           <img className='playlist-pic' src={`${item.album.images[0].url}`} alt="al"/>
         </span>
         <div className='name-and-time'>
-          <div className='left'>
-            {item.name}
+          <div className='left wrap'>
+            <p>{item.name}</p>
+            <p>{item.artists[0].name} <span>&#183;</span> {item.album.name}</p>
           </div>
           <div>
-            {item.duration_ms}
+            {`${minutes}:${seconds}`}
           </div>
         </div>
       </a>

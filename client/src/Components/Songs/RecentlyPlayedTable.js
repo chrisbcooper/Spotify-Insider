@@ -28,8 +28,9 @@ const RecentlyPlayedTable = ({list}) => {
             <img className='playlist-pic' src={`${item.track.album.images[0].url}`} alt="al"/>
           </span>
           <div className='name-and-time'>
-            <div className='left'>
-              <p  >{item.track.name}</p>
+            <div className='left wrap '>
+              <p >{item.track.name}</p>
+              <p>{item.track.artists[0].name} <span>&#183;</span> {item.track.album.name}</p>
             </div>
             <div>
               {`${date.getDate()} ${months[date.getMonth()]}, ${hours}:${minutes}${m}`}

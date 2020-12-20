@@ -4,7 +4,7 @@ const getRecentlyPlayedSongs = async (req, res) => {
     const token = req.header('x-auth-token');
     
     const authOptions = {
-        url: 'https://api.spotify.com/v1/me/player/recently-played?limit=10',
+        url: 'https://api.spotify.com/v1/me/player/recently-played',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

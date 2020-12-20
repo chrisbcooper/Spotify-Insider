@@ -20,6 +20,7 @@ const Album = () => {
   useEffect(() => {
     setCurrentToken(token);
     getAlbum(id);
+    console.log(album);
     
   }, [currentToken]);
 
@@ -32,7 +33,7 @@ const Album = () => {
   }
 
   return (
-    <div className='center'>
+    <div >
         {isNull(album) ? <Loader />: <AlbumPage album={album} /> }
     </div>
   );

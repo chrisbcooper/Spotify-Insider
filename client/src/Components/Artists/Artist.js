@@ -33,7 +33,6 @@ const Artist = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/artist?id=${id}`);
-      console.log(data.body);
       setArtist(data.body);
     }
   }
@@ -42,7 +41,6 @@ const Artist = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/artist_albums?id=${id}`);
-      console.log(data.body);
       setAlbums(data.body);
     }
   }
@@ -51,7 +49,6 @@ const Artist = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/artist_related_artists?id=${id}`);
-      console.log(data.body);
       setRelatedArtists(data.body);
     }
   }
@@ -60,14 +57,13 @@ const Artist = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/artist_top_tracks?id=${id}`);
-      console.log(data.body);
       setTopTracks(data.body);
     }
   }
 
 
   return (
-    <div className='center'>
+    <div>
         {isNull(artist) || isNull(albums) || isNull(relatedArtists) || isNull(topTracks) ? <Loader /> 
         : <ArtistPage albums={albums} artist={artist}  topTracks={topTracks} relatedArtists={relatedArtists}/> }
     </div>

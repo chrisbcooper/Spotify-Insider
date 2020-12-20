@@ -77,6 +77,10 @@ a:hover {
   text-align: left;
 }
 
+.right {
+  text-align: right;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -227,6 +231,10 @@ li {
   height: 50px;
 }
 
+.link-in-list:hover {
+  color: white;
+}
+
 .name-and-time {
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -326,4 +334,29 @@ li {
 .playlist-songs p {
   color: var(--light-grey-color);
   font-size: 0.9rem;
+}
+
+.artist-name {
+  margin: 20px;
+}
+
+.artist-pic {
+  margin-bottom: 20px;
+}
+
+.album-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  white-space: nowrap;
+}
+
+.album-name-header {
+  margin-bottom: 40px;
+}
+
+.album-name-and-time {
+  display: flex;
+  justify-content: space-between;
 }

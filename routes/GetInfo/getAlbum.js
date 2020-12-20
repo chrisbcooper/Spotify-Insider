@@ -14,6 +14,7 @@ const getAlbum = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
+      console.log(body);
       if (!error && response.statusCode === 200) {
         res.send({ body });
       }

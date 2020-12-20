@@ -14,12 +14,18 @@ const Artist = () => {
     //THERE ARE MORE ARTIST  ENDPOINTS
 
   const [artist, setArtist] = useState();
+  const [albums, setAlbums] = useState();
+  const [relatedArtists, setRelatedArtists] = useState();
+  const [topTracks, setTopTracks] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const {id} = useParams();
 
   useEffect(() => {
     setCurrentToken(token);
     getArtist(id);
+    getAlbums(id);
+    getRelatedArtists(id);
+    getTopTracks(id);
     
   }, [currentToken]);
 
@@ -32,9 +38,38 @@ const Artist = () => {
     }
   }
 
+  const getAlbums = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/artist_albums?id=${id}`);
+      console.log(data.body);
+      setAlbums(data.body);
+    }
+  }
+
+  const getRelatedArtists = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/artist_related_artists?id=${id}`);
+      console.log(data.body);
+      setRelatedArtists(data.body);
+    }
+  }
+
+  const getTopTracks = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/artist_top_tracks?id=${id}`);
+      console.log(data.body);
+      setTopTracks(data.body);
+    }
+  }
+
+
   return (
     <div className='center'>
-        {isNull(artist) ? <Loader />: <ArtistPage artist={artist} /> }
+        {isNull(artist) || isNull(albums) || isNull(relatedArtists) || isNull(topTracks) ? <Loader /> 
+        : <ArtistPage albums={albums} artist={artist}  topTracks={topTracks} relatedArtists={relatedArtists}/> }
     </div>
   );
 };

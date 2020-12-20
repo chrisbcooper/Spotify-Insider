@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {isNull} from '../../Utils';
 import {logout} from '../../Spotify';
 
-import CurrentPlaylistsTable from '../Playlists/CurrentPlaylistsTable';
+import ProfilePlaylistTable from './ProfilePlaylistTable';
 
 const ProfilePage = ({profile, playlists}) => {
 
@@ -17,8 +17,8 @@ const ProfilePage = ({profile, playlists}) => {
   return (
     <div>
         <h1>{profile.display_name}</h1>
-        <img src={`${profile.images[0].url}`} alt="" className='profile-pic'/>
-        <CurrentPlaylistsTable list={playlists.items} />
+        <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
+        <ProfilePlaylistTable list={playlists.items} />
     </div>
       );
 };

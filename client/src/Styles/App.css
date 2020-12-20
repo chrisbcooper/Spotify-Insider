@@ -360,3 +360,29 @@ li {
   display: flex;
   justify-content: space-between;
 }
+
+.artist-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: var(--light-grey-color);
+  font-weight: 500;
+  line-height: 0.7rem;
+  margin-bottom: 30px;
+}
+
+.artist-details div {
+  display: block;
+}
+.artist-outer-div {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.artist-lable {
+  font-weight: 100;
+}

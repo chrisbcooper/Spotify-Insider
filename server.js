@@ -16,20 +16,22 @@ const getAccessToken = require('./routes/TokenInfo/getAccessToken.js');
 const refreshToken = require('./routes/TokenInfo/refreshToken.js');
 
 //SPOTIFY INFO
-const getRecentlyPlayedSongs = require('./routes/GetInfo/getRecentlyPlayedSongs.js');
-const getCurrentUserProfile = require('./routes/GetInfo/getCurrentUserProfile.js');
-const getTopSongs = require('./routes/GetInfo/getTopSongs.js');
-const getTopArtists = require('./routes/GetInfo/getTopArtists.js');
-const getCurrentPlaylists = require('./routes/GetInfo/getCurrentPlaylists.js');
-const getPlaylist = require('./routes/GetInfo/getPlaylist.js');
-const getProfile = require('./routes/GetInfo/getProfile.js');
-const getProfilePlaylists = require('./routes/GetInfo/getProfilePlaylists.js');
-const getSong = require('./routes/GetInfo/getSong.js');
-const getArtist = require('./routes/GetInfo/getArtist');
-const getAlbum = require('./routes/GetInfo/getAlbum.js');
-const getArtistsAlbums = require('./routes/GetInfo/getArtistsAlbums.js');
-const getArtistsTopTracks = require('./routes/GetInfo/getArtistsTopTracks.js');
-const getRelatedArtists = require('./routes/GetInfo/getRelatedArtists.js');
+const getRecentlyPlayedSongs = require('./routes/GetInfo/Songs/getRecentlyPlayedSongs.js');
+const getCurrentUserProfile = require('./routes/GetInfo/Profiles/getCurrentUserProfile.js');
+const getTopSongs = require('./routes/GetInfo/Songs/getTopSongs.js');
+const getTopArtists = require('./routes/GetInfo/Artists/getTopArtists.js');
+const getCurrentPlaylists = require('./routes/GetInfo/Playlists/getCurrentPlaylists.js');
+const getPlaylist = require('./routes/GetInfo/Playlists/getPlaylist.js');
+const getProfile = require('./routes/GetInfo/Profiles/getProfile.js');
+const getProfilePlaylists = require('./routes/GetInfo/Playlists/getProfilePlaylists.js');
+const getSong = require('./routes/GetInfo/Songs/getSong.js');
+const getArtist = require('./routes/GetInfo/Artists/getArtist');
+const getAlbum = require('./routes/GetInfo/Albums/getAlbum.js');
+const getArtistsAlbums = require('./routes/GetInfo/Albums/getArtistsAlbums.js');
+const getArtistsTopTracks = require('./routes/GetInfo/Songs/getArtistsTopTracks.js');
+const getRelatedArtists = require('./routes/GetInfo/Artists/getRelatedArtists.js');
+const getSongAudioAnalysis = require('./routes/GetInfo/Songs/getSongAudioAnalysis.js');
+const getSongAudioFeatures = require('./routes/GetInfo/Songs/getSongAudioFeatures.js');
 
 //TOKEN ROUTES
 app.get('/api/login', authorizeSpotify);
@@ -51,6 +53,8 @@ app.get('/api/album', getAlbum);
 app.get('/api/artist_albums', getArtistsAlbums);
 app.get('/api/artist_related_artists', getRelatedArtists);
 app.get('/api/artist_top_tracks', getArtistsTopTracks);
+app.get('/api/song_audio_analysis', getSongAudioAnalysis);
+app.get('/api/song_audio_features', getSongAudioFeatures);
 
 
 

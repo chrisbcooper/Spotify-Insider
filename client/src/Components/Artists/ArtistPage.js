@@ -32,11 +32,43 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
     setNumberOfAlbums(!numberOfAlbums);
   }
     
+
+  const Followers = ({num}) => {
+
+    var numString = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+    return (
+      numString
+    );
+  }
+
+
   return (
-    <div>
+    <div className='artist-outer-div'>
         <h1 className='artist-name' >{artist.name}</h1>
         <img src={`${artist.images[0].url}`} alt="" className='profile-pic artist-pic'/>
-        <p className='artist-stars' >{artistStars}</p>
+        <div className='artist-details'>
+          <div>
+            <p className='artist-stars' >{artistStars}</p>
+            <p className="artist-lable">Popularity</p>
+          </div>
+          {artist.genres.length === 0 ? '' : 
+          <div style={{display: 'inline-block'}}>
+            <ul>
+              {artist.genres.map((item, index) => (
+                <li key={index}>
+                  <p>{item}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="artist-lable">Genres</p>
+          </div>
+          }
+          <div>
+            <p><Followers num={artist.followers.total} /></p>
+            <p className='artist-lable'>Followers</p>
+          </div>
+        </div>
         <h3>Top Tracks</h3>
         <ArtistTopTracks list={topTracks.tracks} all={numberOfTracks} />
         {<button onClick={onClickSong} className='btn btn-dark logout-button' >Show {numberOfTracks ? 'less' : 'more'}</button> }

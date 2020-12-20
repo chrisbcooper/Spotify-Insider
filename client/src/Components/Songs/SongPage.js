@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 
 import {isNull} from '../../Utils';
 
-const SongPage = ({song}) => {
+const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
 
   useEffect(() => {
     if(isNull(song)) {
         return '';
     }
     console.log(song);
+    console.log(songAudioAnalysis);
+    console.log(songAudioFeatures);
   },[]);
 
     

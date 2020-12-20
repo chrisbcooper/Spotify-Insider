@@ -11,15 +11,17 @@ import SongPage from './SongPage';
 
 const Song = () => {
 
-    //THERE ARE MORE SONG ENDPOINTS
-
   const [song, setSong] = useState();
+  const [songAudioAnalysis, setSongAudioAnalysis] = useState();
+  const [songAudioFeatures, setSongAudioFeatures] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const {id} = useParams();
 
   useEffect(() => {
     setCurrentToken(token);
     getSong(id);
+    getSongAudioAnalysis(id);
+    getSongAudioFeatures(id);
     
   }, [currentToken]);
 
@@ -27,14 +29,30 @@ const Song = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/song?id=${id}`);
-      console.log(data.body);
       setSong(data.body);
+    }
+  }
+
+  const getSongAudioAnalysis = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/song_audio_analysis?id=${id}`);
+      setSongAudioAnalysis(data.body);
+    }
+  }
+
+  const getSongAudioFeatures = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/song_audio_features?id=${id}`);
+      setSongAudioFeatures(data.body);
     }
   }
 
   return (
     <div className='center'>
-        {isNull(song) ? <Loader />: <SongPage song={song} /> }
+        {isNull(song) || isNull(songAudioAnalysis) || isNull(songAudioFeatures) ? <Loader />:
+         <SongPage song={song} songAudioAnalysis={songAudioAnalysis} songAudioFeatures={songAudioFeatures} /> }
     </div>
   );
 };

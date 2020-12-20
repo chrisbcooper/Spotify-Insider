@@ -1,27 +1,42 @@
 import React, { useEffect } from 'react';
 
-const CurrentPlaylistsTable = ({list}) => {
+const CurrentPlaylistsTable = ({list, filter, user}) => {
 
   useEffect(() => {
     if(list.length <= 2) {
       return '';
     }
+    console.log(user);
   },[]);
 
   const GridItem = (item, index) => {
 
-      return (
-          <div className='col' key={index}>
-            <a href={`/playlist/${item.id}`}><img src={`${item.images[0].url}`} className='playlist-pic' alt=""/></a>
-            <a href={`/playlist/${item.id}`}><p>{item.name}</p></a>
-          </div>
-      );
+    if(filter !== 'all') {
+      if(filter === 'mine') {
+        if(item.owner.id !== user.id) {
+          return '';
+        }
+      } else {
+        if(item.owner.id === user.id) {
+          return '';
+        }
+      }
+    }
+    return (
+    <div key={index} className='col-lg-3 col-md-4 col-sm-6 artist-col'>
+      <a href={`/playlist/${item.id}`}>
+          <img className='playlist-page-pic' src={`${item.images[0].url}`} alt="al"/>
+          <p style={{margin: '10px'}}>{item.name}</p>
+      </a>
+    </div>
+    );
+      
   };
 
 
     
   return (
-        <div className='container'>
+        <div>
             <div className="row">
                 {list.map( (item, index) => GridItem(item, index))}
             </div>

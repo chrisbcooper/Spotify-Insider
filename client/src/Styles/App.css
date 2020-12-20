@@ -89,8 +89,13 @@ a:hover {
 }
 
 .playlist-page-pic {
-  height: 200px;
-  width: 200px;
+  height: 125px;
+  width: 125px;
+}
+
+.playlist-page-pic:hover {
+  opacity: 0.5;
+  transition: 0.25s;
 }
 
 .profile-pic {
@@ -120,6 +125,9 @@ a:hover {
 }
 .spotify-icon {
   height: 50px;
+}
+.spotify-icon:hover {
+  opacity: 0.5;
 }
 
 .sidenav a,
@@ -185,6 +193,8 @@ button:hover {
   .horizontal-div {
     flex-direction: row;
     display: flex;
+    height: 50px;
+    align-items: center;
   }
 
   .logout-nav {

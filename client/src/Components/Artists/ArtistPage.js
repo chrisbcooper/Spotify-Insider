@@ -52,18 +52,18 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
             <p className='artist-stars' >{artistStars}</p>
             <p className="artist-lable">Popularity</p>
           </div>
-          {artist.genres.length === 0 ? '' : 
           <div style={{display: 'inline-block'}}>
+          {artist.genres.length == 0 ? <p>N/A</p> : 
             <ul>
               {artist.genres.map((item, index) => (
                 <li key={index}>
-                  <p>{item}</p>
+                  <p style={{lineHeight: '1rem'}}>{item}</p>
                 </li>
               ))}
             </ul>
-            <p className="artist-lable">Genres</p>
-          </div>
           }
+          <p className="artist-lable">Genres</p>
+          </div>
           <div>
             <p><Followers num={artist.followers.total} /></p>
             <p className='artist-lable'>Followers</p>
@@ -73,7 +73,7 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
         <ArtistTopTracks list={topTracks.tracks} all={numberOfTracks} />
         {<button onClick={onClickSong} className='btn btn-dark logout-button' >Show {numberOfTracks ? 'less' : 'more'}</button> }
         <h3 className='album-name-header'>Albums</h3>
-        <ArtistAlbums albums={albums.items} all={numberOfAlbums} />
+        <div style={{width: '100%'}}><ArtistAlbums albums={albums.items} all={numberOfAlbums} /></div>
         {<button onClick={onClickAlbum} className='btn btn-dark logout-button' >Show {numberOfAlbums ? 'less' : 'all'}</button> }
     </div>
       );

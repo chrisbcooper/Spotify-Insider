@@ -35,3 +35,58 @@ export const stars = (pop) => {
             return '';
       }
 }
+
+export const pitchNumber = note => {
+    let key = note;
+  
+    switch (note) {
+      case 0:
+        key = 'C';
+        break;
+      case 1:
+        key = 'D♭';
+        break;
+      case 2:
+        key = 'D';
+        break;
+      case 3:
+        key = 'E♭';
+        break;
+      case 4:
+        key = 'E';
+        break;
+      case 5:
+        key = 'F';
+        break;
+      case 6:
+        key = 'G♭';
+        break;
+      case 7:
+        key = 'G';
+        break;
+      case 8:
+        key = 'A♭';
+        break;
+      case 9:
+        key = 'A';
+        break;
+      case 10:
+        key = 'B♭';
+        break;
+      case 11:
+        key = 'B';
+        break;
+      default:
+        return null;
+    }
+  
+    return key;
+};
+
+export const milliToSeconds = (duration) => {
+    var seconds = Math.floor(duration / 1000);
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds - (60 * minutes);
+    seconds = seconds > 10 ? seconds : `0${seconds}`;
+    return `${minutes}:${seconds}`;
+};

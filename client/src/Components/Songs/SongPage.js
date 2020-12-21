@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import {isNull} from '../../Utils';
+import {isNull, pitchNumber, milliToSeconds} from '../../Utils';
 
 const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
 
@@ -15,11 +15,15 @@ const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
 
     
   return (
-    <div>
-        <h1>{song.name}</h1>
+    <div className='song-page-outer-div' >
+        <h2>{song.name}</h2>
         <img src={`${song.album.images[0].url}`} alt="" class='playlist-page-pic'/>
-        <h3>By: <a href={`/artist/${song.artists[0].id}`}>{song.artists[0].name}</a></h3>
+        <a className='song-page-name' href={`/artist/${song.artists[0].id}`}><p>By: {song.artists[0].name}</p></a>
         <p>Relased: {song.album.release_date}</p>
+        <p>{pitchNumber(songAudioFeatures.key)}</p>
+        <p>{songAudioFeatures.mode === 0 ? 'Major' : 'Minor'}</p>
+        <p>Tempo: {Math.floor(songAudioFeatures.tempo)} BPM</p>
+        <p>{milliToSeconds(songAudioFeatures.duration_ms)}</p>
     </div>
       );
 };

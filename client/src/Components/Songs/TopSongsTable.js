@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import {milliToSeconds} from '../../Utils';
+
 const TopSongsTable = ({list}) => {
 
   useEffect(() => {
@@ -11,10 +13,6 @@ const TopSongsTable = ({list}) => {
 
   const TableItem = (item, index) => {
 
-    var seconds = Math.floor(item.duration_ms / 1000);
-    var minutes = Math.floor(seconds / 60);
-    seconds = seconds - (60 * minutes);
-    seconds = seconds > 10 ? seconds : `0${seconds}`;
 
 
     return (
@@ -29,7 +27,7 @@ const TopSongsTable = ({list}) => {
             <p>{item.artists[0].name} <span>&#183;</span> {item.album.name}</p>
           </div>
           <div>
-            {`${minutes}:${seconds}`}
+            {milliToSeconds(item.duration_ms)}
           </div>
         </div>
       </a>

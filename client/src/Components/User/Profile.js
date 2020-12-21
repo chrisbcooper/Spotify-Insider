@@ -43,7 +43,7 @@ const Profile = () => {
   }
   
   return (
-    <div className='center'>
+    <div>
         {isNull(profile) || isNull(profilePlaylists) ? <Loader />: <ProfilePage profile={profile} playlists={profilePlaylists}/> }
     </div>
   );

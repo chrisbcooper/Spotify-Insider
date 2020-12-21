@@ -13,7 +13,7 @@ const TopArtistsTable = ({list}) => {
     return (
       <div key={index} className='col-lg-3 col-md-4 col-sm-6 artist-col'>
         <a href={`/artist/${item.id}`}>
-            <img className='profile-pic' src={`${item.images[0].url}`} alt="al"/>
+            <img className='top-artist-pic' src={`${item.images[0].url}`} alt="al"/>
             <p style={{margin: '10px'}}>{item.name}</p>
         </a>
     </div>)

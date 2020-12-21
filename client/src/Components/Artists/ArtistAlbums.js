@@ -18,7 +18,7 @@ const ArtistAlbums = ({albums, all}) => {
     }
 
     return (
-    <div key={index} className='col-lg-3 col-md-4 col-sm-6 artist-col'>
+    <div key={index} className='col-lg-3 col-md-4 col-sm-6 artist-album-col'>
       <a href={`/album/${item.id}`}>
           <img className='playlist-page-pic' src={`${item.images[0].url}`} alt="al"/>
           <p style={{margin: '10px'}} className='album-name' >{item.name}</p>
@@ -31,11 +31,9 @@ const ArtistAlbums = ({albums, all}) => {
 
     
   return (
-        <div>
-            <div className="row">
-                {albums.map( (item, index) => GridItem(item, index))}
-            </div>
-        </div>
+    <div className="row">
+        {albums.map( (item, index) => GridItem(item, index))}
+    </div>
       );
 };
 

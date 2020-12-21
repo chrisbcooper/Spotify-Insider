@@ -18,6 +18,7 @@ const ProfilePage = ({profile, playlists}) => {
     <div>
         <h1>{profile.display_name}</h1>
         <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
+        <h4 style={{marginBottom: '30px'}}>Playlists</h4>
         <ProfilePlaylistTable list={playlists.items} />
     </div>
       );

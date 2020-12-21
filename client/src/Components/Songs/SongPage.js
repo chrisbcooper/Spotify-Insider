@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import {isNull, pitchNumber, milliToSeconds} from '../../Utils';
 
+import SongFeaturesChart from './SongFeaturesChart';
+
 const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
         <p>{songAudioFeatures.mode === 0 ? 'Major' : 'Minor'}</p>
         <p>Tempo: {Math.floor(songAudioFeatures.tempo)} BPM</p>
         <p>{milliToSeconds(songAudioFeatures.duration_ms)}</p>
+        <SongFeaturesChart song={song} songAudioFeatures={songAudioFeatures} songAudioAnalysis={songAudioAnalysis}  />
     </div>
       );
 };

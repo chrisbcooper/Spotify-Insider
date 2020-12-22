@@ -56,7 +56,7 @@ app.get('/api/artist_related_artists', getRelatedArtists);
 app.get('/api/artist_top_tracks', getArtistsTopTracks);
 app.get('/api/song_audio_analysis', getSongAudioAnalysis);
 app.get('/api/song_audio_features', getSongAudioFeatures);
-app.get('/get_top_genres', getTopGenres);
+app.get('/api/get_top_genres', getTopGenres);
 
 
 

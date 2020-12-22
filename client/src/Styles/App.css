@@ -475,3 +475,12 @@ li {
   display: flex;
   flex-direction: column;
 }
+
+.genre-list-div {
+  display: flex;
+  text-align: left;
+  background-color: var(--primary-color);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 25px;
+}

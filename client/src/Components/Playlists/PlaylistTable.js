@@ -42,11 +42,6 @@ const PlaylistTable = ({playlist}) => {
   
 return (
   <div className='playlist-songs'>
-    <h2>{playlist.name}</h2>
-    <img src={`${playlist.images[0].url}`} className='playlist-page-pic' style={{marginBottom: '20px'}}  alt=""/>
-    <a href={`/profile/${playlist.owner.id}`}><p>By: {playlist.owner.display_name}</p></a>
-    <p>{playlist.description}</p>
-    <p>{playlist.tracks.total} Tracks</p>
     <div style={{marginTop: '30px'}}>
       <ol>
         {playlist.tracks.items.map((item, index) => TableItem(item, index))}

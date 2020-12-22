@@ -76,3 +76,23 @@ export const logout = () => {
     window.location.href = '/';
   };
 
+export const createAndSavePlaylist = async (id, name, playlist, profile) => {
+    const response = await createPlaylist(id, name, profile);
+  if(response.status === 200) {
+    const r = await addSongsToPlaylist(response.data.id, playlist);
+    if(r.status === 200) {
+      return true;
+    }
+  }
+  return false
+}
+
+const createPlaylist = async (id, name, profile) => (
+    await axios.post(`/create_playlist?id=${id}&name=${name}&profile=${profile}`)
+);
+
+const addSongsToPlaylist = async (newID, playlist) => {
+    const uris = playlist.tracks.map(item => item.uri).join(',');
+  
+    return (await axios.post(`/add_to_playlist?id=${newID}&uris=${uris}`));
+  };

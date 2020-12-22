@@ -8,11 +8,13 @@ import Loader from '../Parts/Loader';
 import { isNull } from '../../Utils';
 
 import TopGenresList from './TopGenresList';
+import RecommendTable from '../Playlists/RecommendTable';
 
 const CurrentProfile = () => {
 
   const [userProfile, setUserProfile] = useState();
   const [currentToken, setCurrentToken] = useState('');
+  const [recommendedPlaylist, setRecommendedPlaylist] = useState();
   const [topGenres, setTopGenres] = useState();
   const [currentTerm, setCurrentTerm] = useState('short');
 
@@ -20,6 +22,7 @@ const CurrentProfile = () => {
     setCurrentToken(token);
     getUser();
     getTopGenres(currentTerm);
+    getRecommendedPlaylist();
     
   }, [currentToken, currentTerm]);
 
@@ -34,8 +37,18 @@ const CurrentProfile = () => {
   const getTopGenres = async (term) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/get_top_genres?term=${term}`);
+      const {data} = await axios.get(`/top_genres?term=${term}`);
       setTopGenres(data);
+    }
+  }
+
+  const getRecommendedPlaylist = async () => {
+    setAuthToken(currentToken);
+    
+    if(currentToken) {
+      const {data} = await axios.get('/general_recommendation');
+      console.log(data);
+      setRecommendedPlaylist(data);
     }
   }
 
@@ -51,12 +64,12 @@ const CurrentProfile = () => {
 
   return (
       <div>
-        {!isNull(userProfile) && !isNull(topGenres) ? ( 
+        {!isNull(userProfile) && !isNull(topGenres) && !isNull(recommendedPlaylist) ? ( 
         <div className='home-user-div' >
             <h1>{userProfile.display_name}</h1>
             <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
             <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>
-            <div>
+            <div style={{margin: '0 10%'}}>
             <div className='header'>
               <h3>Top Genres</h3>
                 <div className="btn-group" role="group">
@@ -66,6 +79,7 @@ const CurrentProfile = () => {
                 </div>
             </div>
               <TopGenresList list={topGenres} />
+              <RecommendTable playlist={recommendedPlaylist} id={userProfile.id} profile={true} />
           </div>
         </div>) : 
         <Loader />}

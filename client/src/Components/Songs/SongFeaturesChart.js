@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import {isNull, pitchNumber, milliToSeconds} from '../../Utils';
-
 import {Bar} from 'react-chartjs-2';
 
 const SongFeaturesChart = ({song, songAudioFeatures, songAudioAnalysis}) => {
@@ -45,7 +43,6 @@ const SongFeaturesChart = ({song, songAudioFeatures, songAudioAnalysis}) => {
         ], 
         borderWidth: 1,
       }
-
     ]
   }
 
@@ -56,10 +53,6 @@ const SongFeaturesChart = ({song, songAudioFeatures, songAudioAnalysis}) => {
       width={300}
       height={250}
       options={{
-        title: {
-          display: true,
-          text: 'Song data'
-        },
         legend: {
           display: false
         },

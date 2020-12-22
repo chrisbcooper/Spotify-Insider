@@ -461,9 +461,14 @@ li {
   margin-top: 10px;
 }
 
+.login-btn:hover {
+  color: white;
+}
+
 .logout-button {
   background-color: transparent;
   border-color: white;
+  border-radius: 25px;
 }
 
 .logout-button:hover {
@@ -479,8 +484,14 @@ li {
 .genre-list-div {
   display: flex;
   text-align: left;
-  background-color: var(--primary-color);
-  margin: 20px;
+  background-color: var(--light-grey-color);
+  margin: 20px 0;
   padding: 10px;
   border-radius: 25px;
+  opacity: 0.65;
+}
+
+.playlist-created {
+  display: flex;
+  flex-direction: row;
 }

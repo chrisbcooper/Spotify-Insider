@@ -33,6 +33,10 @@ const getRelatedArtists = require('./routes/GetInfo/Artists/getRelatedArtists.js
 const getSongAudioAnalysis = require('./routes/GetInfo/Songs/getSongAudioAnalysis.js');
 const getSongAudioFeatures = require('./routes/GetInfo/Songs/getSongAudioFeatures.js');
 const getTopGenres = require('./routes/GetInfo/Profiles/getTopGenres.js');
+const getPlaylistRecommendation = require('./routes/GetInfo/Playlists/getPlaylistRecommendation.js');
+const postCreatePlaylist = require('./routes/GetInfo/Playlists/postCreatePlaylist.js');
+const postAddToPlaylist = require('./routes/GetInfo/Playlists/postAddToPlaylist.js');
+const getGeneralRecommendedPlaylist = require('./routes/GetInfo/Playlists/getGeneralRecommendedPlaylist.js');
 
 //TOKEN ROUTES
 app.get('/api/login', authorizeSpotify);
@@ -56,7 +60,11 @@ app.get('/api/artist_related_artists', getRelatedArtists);
 app.get('/api/artist_top_tracks', getArtistsTopTracks);
 app.get('/api/song_audio_analysis', getSongAudioAnalysis);
 app.get('/api/song_audio_features', getSongAudioFeatures);
-app.get('/api/get_top_genres', getTopGenres);
+app.get('/api/top_genres', getTopGenres);
+app.get('/api/playlist_recommendation', getPlaylistRecommendation);
+app.post('/api/create_playlist', postCreatePlaylist);
+app.post('/api/add_to_playlist', postAddToPlaylist);
+app.get('/api/general_recommendation', getGeneralRecommendedPlaylist);
 
 
 

@@ -18,11 +18,10 @@ const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
   const date = () => {
     var str_date = song.album.release_date;
     const arr_date = str_date.split('-');
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
-    const dateNum = parseInt(arr_date[1]) >= 10 ? arr_date[1] : `${String(arr_date[1]).charAt(1)}` 
+    const months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+    const dateNum = parseInt(arr_date[2]) >= 10 ? arr_date[2] : `${String(arr_date[2]).charAt(1)}` 
 
-
-    return (months[arr_date[2]] + ' ' + dateNum + ', ' + arr_date[0]);
+    return (months[parseInt(arr_date[1])] + ' ' + dateNum + ', ' + arr_date[0]);
   }
 
     

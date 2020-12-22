@@ -6,14 +6,13 @@ const TopGenresList = ({list}) => {
     if(list.length <= 2) {
       return '';
     }
-    console.log(list);
   },[]);
 
   const GridItem = (item, index) => {
 
     return (
         <div className='genre-list-div' >
-            <h4>{index + 1})   {item[0]}</h4>
+            <h4 >{index + 1})   {item[0]}</h4>
         </div>
     );
       
@@ -22,7 +21,7 @@ const TopGenresList = ({list}) => {
 
     
   return (
-        <div>
+        <div style={{marginBottom: '75px'}}>
             {list.map( (item, index) => GridItem(item, index))}
         </div>
       );

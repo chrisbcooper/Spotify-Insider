@@ -38,7 +38,7 @@ const Playlist = () => {
             <a href={`/profile/${playlist.owner.id}`}><p>By: {playlist.owner.display_name}</p></a>
             <p>{playlist.description}</p>
             <p>{playlist.tracks.total} Tracks</p>
-            <a className="btn login-btn" href={`/playlist_recommendations/${playlist.name}/${playlist.id}`}>Get Recommended Playlist</a>
+            <a className="btn login-btn" href={`/playlist_recommendations/${playlist.id}/${playlist.name}`}>Get Recommended Playlist</a>
         <PlaylistTable playlist={playlist}/>
         </div> :
          <Loader />}

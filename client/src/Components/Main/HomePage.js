@@ -36,7 +36,7 @@ const HomePage = () => {
             <Route exact path='/song/:id' component={Song} />
             <Route exact path='/artist/:id' component={Artist} />
             <Route exact path='/album/:id' component={Album} />
-            <Route exact path='/playlist_recommendations/:name/:id' component={PlaylistRecommendation} />
+            <Route exact path='/playlist_recommendations/:id/:name' component={PlaylistRecommendation} />
           </Switch>
           </div>
       </Router>

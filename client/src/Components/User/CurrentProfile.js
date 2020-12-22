@@ -10,10 +10,12 @@ const CurrentProfile = () => {
 
   const [userProfile, setUserProfile] = useState();
   const [currentToken, setCurrentToken] = useState('');
+  const [topGenres, setTopGenres] =useState();
 
   useEffect(() => {
     setCurrentToken(token);
     getUser();
+    //getTopGenres();
     
   }, [currentToken]);
 
@@ -25,14 +27,21 @@ const CurrentProfile = () => {
     }
   }
 
+  const getTopGenres = async () => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get('/get_top_genres');
+      setTopGenres(data.body);
+    }
+  }
+
 
   return (
       <div>
         {userProfile ? ( 
-        <div>
+        <div className='home-user-div' >
             <h1>{userProfile.display_name}</h1>
             <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
-            <p>Followers {userProfile.followers.total}</p>
             <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>
             
         </div>) : 

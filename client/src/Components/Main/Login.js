@@ -6,9 +6,10 @@ const Login = () => {
 
 
   return (
-    <div>
-        <h1>Login to Spotify</h1>
-        <a href={`${link}`}>Connect your Spotify account</a>
+    <div className='login-div'>
+        <h1>Spotify Insider</h1>
+        <h4>Learn more about your spotify account!</h4>
+        <a className='btn login-btn' href={`${link}`}>Login to Spotify</a>
     </div>
   );
 };

@@ -32,6 +32,7 @@ const getArtistsTopTracks = require('./routes/GetInfo/Songs/getArtistsTopTracks.
 const getRelatedArtists = require('./routes/GetInfo/Artists/getRelatedArtists.js');
 const getSongAudioAnalysis = require('./routes/GetInfo/Songs/getSongAudioAnalysis.js');
 const getSongAudioFeatures = require('./routes/GetInfo/Songs/getSongAudioFeatures.js');
+const getTopGenres = require('./routes/GetInfo/Profiles/getTopGenres.js');
 
 //TOKEN ROUTES
 app.get('/api/login', authorizeSpotify);
@@ -55,6 +56,7 @@ app.get('/api/artist_related_artists', getRelatedArtists);
 app.get('/api/artist_top_tracks', getArtistsTopTracks);
 app.get('/api/song_audio_analysis', getSongAudioAnalysis);
 app.get('/api/song_audio_features', getSongAudioFeatures);
+app.get('/get_top_genres', getTopGenres);
 
 
 

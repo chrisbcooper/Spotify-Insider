@@ -50,7 +50,7 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
         <div className='artist-details'>
           <div>
             <p className='artist-stars' >{artistStars}</p>
-            <p className="artist-lable">Popularity</p>
+            <p className="artist-label">Popularity</p>
           </div>
           <div style={{display: 'inline-block'}}>
           {artist.genres.length == 0 ? <p>N/A</p> : 
@@ -62,11 +62,11 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
               ))}
             </ul>
           }
-          <p className="artist-lable">Genres</p>
+          <p className="artist-label">Genres</p>
           </div>
           <div>
             <p><Followers num={artist.followers.total} /></p>
-            <p className='artist-lable'>Followers</p>
+            <p className='artist-label'>Followers</p>
           </div>
         </div>
         <h3>Top Tracks</h3>

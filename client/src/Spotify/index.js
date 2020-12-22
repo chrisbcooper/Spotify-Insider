@@ -73,6 +73,6 @@ export const logout = () => {
     window.localStorage.removeItem('spotify_timestamp');
     window.localStorage.removeItem('spotify_access_token');
     window.localStorage.removeItem('spotify_refresh_token');
-    window.location.reload();
+    window.location.href = '/';
   };
 

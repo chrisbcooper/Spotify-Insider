@@ -394,7 +394,7 @@ li {
   -webkit-box-pack: center;
 }
 
-.artist-lable {
+.artist-label {
   font-weight: 100;
 }
 
@@ -423,7 +423,7 @@ li {
 }
 
 .song-page-name {
-  margin: 20px;
+  margin-bottom: 20px;
 }
 
 .song-page-outer-div {
@@ -431,4 +431,47 @@ li {
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.song-name {
+  margin-top: 20px;
+}
+
+.col {
+  padding: 0 25px;
+}
+
+.login-div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.login-div h1 {
+  font-size: 5rem;
+  margin-bottom: 30px;
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  margin-top: 10px;
+}
+
+.logout-button {
+  background-color: transparent;
+  border-color: white;
+}
+
+.logout-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.home-user-div {
+  display: flex;
+  flex-direction: column;
 }

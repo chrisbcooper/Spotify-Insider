@@ -28,7 +28,7 @@ const Song = () => {
   const getSong = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/song?id=${id}`);
+      const {data} = await axios.get(`/api/song?id=${id}`);
       console.log(data.body);
       setSong(data.body);
     }
@@ -37,7 +37,7 @@ const Song = () => {
   const getSongAudioAnalysis = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/song_audio_analysis?id=${id}`);
+      const {data} = await axios.get(`/api/song_audio_analysis?id=${id}`);
       console.log(data.body)
       setSongAudioAnalysis(data.body);
     }
@@ -48,7 +48,7 @@ const Song = () => {
     var counter = 0;
     if(currentToken) {
       while(counter < 5) {
-        const {data} = await axios.get(`/song_audio_features?id=${id}`);
+        const {data} = await axios.get(`/api/song_audio_features?id=${id}`);
         console.log(counter)
         if(isNull(data)) {
           console.log('null');

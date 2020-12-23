@@ -4,8 +4,6 @@ const getFollow = async (req, res) => {
     const token = req.header('x-auth-token');
     const id = req.query.id;
     const type = req.query.type;
-    console.log(id);
-    console.log
     
     const authOptions = {
         url: `https://api.spotify.com/v1/me/following/contains?type=${type}&ids=${id}`,

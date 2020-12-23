@@ -22,7 +22,7 @@ const TopSongs = () => {
   const getSongs = async (term) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/top_songs?term=${term}`);
+      const {data} = await axios.get(`/api/top_songs?term=${term}`);
       setTopSongs(data.topSongs);
     }
   }

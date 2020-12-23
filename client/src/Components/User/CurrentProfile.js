@@ -29,7 +29,7 @@ const CurrentProfile = () => {
   const getUser = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/current_profile');
+      const {data} = await axios.get('/api/current_profile');
       setUserProfile(data.body);
     }
   }
@@ -37,7 +37,7 @@ const CurrentProfile = () => {
   const getTopGenres = async (term) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/top_genres?term=${term}`);
+      const {data} = await axios.get(`/api/top_genres?term=${term}`);
       setTopGenres(data);
     }
   }
@@ -46,7 +46,7 @@ const CurrentProfile = () => {
     setAuthToken(currentToken);
     
     if(currentToken) {
-      const {data} = await axios.get('/general_recommendation');
+      const {data} = await axios.get('/api/general_recommendation');
       console.log(data);
       setRecommendedPlaylist(data);
     }

@@ -14,6 +14,8 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
 
   const [numberOfTracks, setNumberOfTracks] = useState(false);
   const [numberOfAlbums, setNumberOfAlbums] = useState(false);
+  const [songButton, setSongButton] = useState(true);
+  const [albumButton, setAlbumButton] = useState(true);
   const [newFollow, setNewFollow ] = useState(following);
   const [currentToken, setCurrentToken] = useState('');
 
@@ -23,7 +25,8 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
         return '';
     }
     setCurrentToken(token);
-    console.log(following);
+  
+    checkButtons();
   },[]);
 
   const artistStars = stars(artist.popularity);
@@ -38,6 +41,15 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
     setNumberOfAlbums(!numberOfAlbums);
   }
     
+  const checkButtons = () => {
+    if(topTracks.tracks.length < 6) {
+      setSongButton(false);
+    }
+
+    if(albums.items.length < 9) {
+      setAlbumButton(false);
+    }
+  }
 
   const Followers = ({num}) => {
 
@@ -51,10 +63,21 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
   const clickFollow = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.put(`/follow?id=${artist.id}&type=artist`);
+      const {data} = await axios.put(`/api/follow?id=${artist.id}&type=artist`);
       console.log(data);
       if(data === 'success') {
         setNewFollow(true);
+      }
+    }
+  }
+
+  const clickunFollow = async () => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.delete(`/api/unfollow?id=${artist.id}&type=artist`);
+      console.log(data);
+      if(data === 'success') {
+        setNewFollow(false);
       }
     }
   }
@@ -85,15 +108,21 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
             <p className='artist-label'>Followers</p>
           </div>
         </div>
-        { newFollow ? <div className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div> :
+        { newFollow ? <div onClick={clickunFollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div> :
           <button onClick={clickFollow} className='btn login-btn' >Follow</button>
         }
         <h3>Top Tracks</h3>
         <ArtistTopTracks list={topTracks.tracks} all={numberOfTracks} />
-        {<button onClick={onClickSong} className='btn btn-dark logout-button' >Show {numberOfTracks ? 'less' : 'more'}</button> }
+        { songButton ? 
+          <button onClick={onClickSong} className='btn btn-dark logout-button' >Show {numberOfTracks ? 'less' : 'more'}</button> :
+          <div style={{margin: '5px'}}></div>
+        }
+        
         <h3 className='album-name-header'>Albums</h3>
         <div style={{width: '100%'}}><ArtistAlbums albums={albums.items} all={numberOfAlbums} /></div>
-        {<button onClick={onClickAlbum} className='btn btn-dark logout-button' >Show {numberOfAlbums ? 'less' : 'all'}</button> }
+        { albumButton && 
+          <button onClick={onClickAlbum} className='btn btn-dark logout-button' >Show {numberOfAlbums ? 'less' : 'all'}</button> 
+        }
     </div>
       );
 };

@@ -27,7 +27,7 @@ const Album = () => {
   const getAlbum = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/album?id=${id}`);
+      const {data} = await axios.get(`/api/album?id=${id}`);
       setAlbum(data.body);
     }
   }

@@ -32,7 +32,7 @@ const Artist = () => {
   const getArtist = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/artist?id=${id}`);
+      const {data} = await axios.get(`/api/artist?id=${id}`);
       setArtist(data.body);
     }
   }
@@ -40,7 +40,7 @@ const Artist = () => {
   const getAlbums = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/artist_albums?id=${id}`);
+      const {data} = await axios.get(`/api/artist_albums?id=${id}`);
       setAlbums(data.body);
     }
   }
@@ -48,7 +48,7 @@ const Artist = () => {
   const getRelatedArtists = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/artist_related_artists?id=${id}`);
+      const {data} = await axios.get(`/api/artist_related_artists?id=${id}`);
       setRelatedArtists(data.body);
     }
   }
@@ -56,7 +56,7 @@ const Artist = () => {
   const getTopTracks = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/artist_top_tracks?id=${id}`);
+      const {data} = await axios.get(`/api/artist_top_tracks?id=${id}`);
       setTopTracks(data.body);
     }
   }
@@ -64,7 +64,7 @@ const Artist = () => {
   const getFollowing = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/follow?id=${id}&type=artist`);
+      const {data} = await axios.get(`/api/follow?id=${id}&type=artist`);
       setFollowing(data[0]);
     }
   }

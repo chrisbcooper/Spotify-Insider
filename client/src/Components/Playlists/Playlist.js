@@ -27,7 +27,7 @@ const Playlist = () => {
   const getPlaylist = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/playlist?id=${id}`);
+      const {data} = await axios.get(`/api/playlist?id=${id}`);
       console.log(data);
       setPlaylist(data.playlist);
     }
@@ -36,9 +36,9 @@ const Playlist = () => {
   const getFollow = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      var response = await axios.get('/current_profile');
+      var response = await axios.get('/api/current_profile');
       var user = response.data.body.id;
-      const {data} = await axios.get(`/follow_playlist?id=${id}&user=${user}`);
+      const {data} = await axios.get(`/api/follow_playlist?id=${id}&user=${user}`);
       setFollow(data[0]);
       
     }
@@ -48,10 +48,22 @@ const Playlist = () => {
     setAuthToken(currentToken);
 
     if(currentToken) {
-      const {data} = await axios.put(`/follow_playlist?id=${id}`);
+      const {data} = await axios.put(`/api/follow_playlist?id=${id}`);
       console.log(data);
       if(data === 'success') {
         setFollow(true);
+      }
+    }
+  }
+
+  const clickUnfollow = async () => {
+    setAuthToken(currentToken);
+
+    if(currentToken) {
+      const {data} = await axios.delete(`/api/unfollow_playlist?id=${id}`);
+      console.log(data);
+      if(data === 'success') {
+        setFollow(false);
       }
     }
   }
@@ -60,16 +72,15 @@ const Playlist = () => {
   
   return (
     <div>
-        {!isNull(playlist) ? <div>
+        {!isNull(playlist) ? <div className='playlist-header'>
           <h2>{playlist.name}</h2>
             <img src={`${playlist.images[0].url}`} className='playlist-page-pic' style={{marginBottom: '20px'}}  alt=""/>
             <a href={`/profile/${playlist.owner.id}`}><p>By: {playlist.owner.display_name}</p></a>
             <p>{playlist.description}</p>
             <p>{playlist.tracks.total} Tracks</p>
-            <a className="btn login-btn" href={`/playlist_recommendations/${playlist.id}/${playlist.name}`}>Get Recommended Playlist</a>
-            { follow ? <div className='user-follow'><div className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
-          <button onClick={clickFollow} className='btn login-btn' >Follow</button>
-        }
+            { follow ? <div className='playlist-follow'><div onClick={clickUnfollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
+            <button onClick={clickFollow} className='btn login-btn' >Follow</button> }
+            <a className="btn login-btn" style={{marginTop: '0'}} href={`/playlist_recommendations/${playlist.id}/${playlist.name}`}>Get Recommended Playlist</a>
         <PlaylistTable playlist={playlist}/>
         </div> :
          <Loader />}

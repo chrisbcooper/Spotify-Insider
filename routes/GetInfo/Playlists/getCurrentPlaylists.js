@@ -2,7 +2,7 @@ const request = require('request');
 
 const getCurrentPlaylists = async (req, res) => {
     const token = req.header('x-auth-token');
-    
+
     const authOptions = {
         url: 'https://api.spotify.com/v1/me/playlists',
         headers: {

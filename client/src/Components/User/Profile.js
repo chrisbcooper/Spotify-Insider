@@ -28,7 +28,7 @@ const Profile = () => {
   const getProfile = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/profile?id=${id}`);
+      const {data} = await axios.get(`/api/profile?id=${id}`);
       console.log(data.body);
       setProfile(data.body);
     }
@@ -37,7 +37,7 @@ const Profile = () => {
   const getProfilePlaylists = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/profile_playlists?id=${id}`);
+      const {data} = await axios.get(`/api/profile_playlists?id=${id}`);
       console.log(data.body);
       setProfilePlaylists(data.body);
     }
@@ -46,7 +46,7 @@ const Profile = () => {
   const getFollowing = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/follow?id=${id}&type=user`);
+      const {data} = await axios.get(`/api/follow?id=${id}&type=user`);
       setFollowing(data[0]);
     }
   }

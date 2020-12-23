@@ -24,22 +24,34 @@ const ProfilePage = ({profile, playlists, following}) => {
     setAuthToken(currentToken);
 
     if(currentToken) {
-      const {data} = await axios.put(`/follow?id=${profile.id}&type=user`);
+      const {data} = await axios.put(`/api/follow?id=${profile.id}&type=user`);
       console.log(data);
       if(data === 'success') {
         setNewFollow(true);
       }
     }
   }
+
+  const clickUnfollow = async () => {
+    setAuthToken(currentToken);
+
+    if(currentToken) {
+      const {data} = await axios.delete(`/api/unfollow?id=${profile.id}&type=user`);
+      console.log(data);
+      if(data === 'success') {
+        setNewFollow(false);
+      }
+    }
+  }
     
   return (
-    <div>
+    <div className='playlist-header'>
         <h1>{profile.display_name}</h1>
         <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
-        <h4 style={{marginBottom: '30px'}}>Playlists</h4>
-        { newFollow ? <div className='user-follow'><div className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
+        { newFollow ? <div className='user-follow'><div onClick={clickUnfollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
           <button onClick={clickFollow} className='btn login-btn' >Follow</button>
         }
+        <h4 style={{marginBottom: '30px'}}>Playlists</h4>
         <ProfilePlaylistTable list={playlists.items} />
     </div>
       );

@@ -18,7 +18,7 @@ export const refreshAccessToken = async () => {
     
     if(!isNull(getRefreshToken())) {
         try {
-            const {data} = await axios.get(`/refresh_token?refresh_token=${getRefreshToken()}`);
+            const {data} = await axios.get(`/api/refresh_token?refresh_token=${getRefreshToken()}`);
             const {access_token} = data;
 
             setAccessToken(access_token);
@@ -88,11 +88,11 @@ export const createAndSavePlaylist = async (id, name, playlist, profile) => {
 }
 
 const createPlaylist = async (id, name, profile) => (
-    await axios.post(`/create_playlist?id=${id}&name=${name}&profile=${profile}`)
+    await axios.post(`/api/create_playlist?id=${id}&name=${name}&profile=${profile}`)
 );
 
 const addSongsToPlaylist = async (newID, playlist) => {
     const uris = playlist.tracks.map(item => item.uri).join(',');
   
-    return (await axios.post(`/add_to_playlist?id=${newID}&uris=${uris}`));
+    return (await axios.post(`/api/add_to_playlist?id=${newID}&uris=${uris}`));
   };

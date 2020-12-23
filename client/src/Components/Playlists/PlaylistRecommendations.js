@@ -26,7 +26,7 @@ const PlaylistRecommendations = () => {
     
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/playlist_recommendation?id=${id}`);
+      const {data} = await axios.get(`/api/playlist_recommendation?id=${id}`);
       console.log(data);
       setPlaylist(data);
     }
@@ -35,7 +35,7 @@ const PlaylistRecommendations = () => {
   const getCurrentUser = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/current_profile');
+      const {data} = await axios.get('/api/current_profile');
       setCurrentUser(data.body);
     }
   } 

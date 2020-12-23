@@ -22,7 +22,7 @@ const TopArtists = () => {
   const getArtists = async (term) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/top_artists?term=${term}`);
+      const {data} = await axios.get(`/api/top_artists?term=${term}`);
       setTopArtists(data.topArtists);
     }
   }

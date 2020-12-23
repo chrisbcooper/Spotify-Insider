@@ -17,7 +17,6 @@ const PlaylistRecommendations = () => {
   const {id, name} = useParams();
 
   useEffect(() => {
-    console.log(id);
     setCurrentToken(token);
     getPlaylistRecommendation(id);
     getCurrentUser()

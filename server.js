@@ -37,6 +37,10 @@ const getPlaylistRecommendation = require('./routes/GetInfo/Playlists/getPlaylis
 const postCreatePlaylist = require('./routes/GetInfo/Playlists/postCreatePlaylist.js');
 const postAddToPlaylist = require('./routes/GetInfo/Playlists/postAddToPlaylist.js');
 const getGeneralRecommendedPlaylist = require('./routes/GetInfo/Playlists/getGeneralRecommendedPlaylist.js');
+const putFollow = require('./routes/GetInfo/Artists/putFollow.js');
+const getFollow = require('./routes/GetInfo/Artists/getFollow.js');
+const putFollowPlaylist = require('./routes/GetInfo/Playlists/putFollowPlaylist.js');
+const getFollowPlaylist = require('./routes/GetInfo/Playlists/getFollowPlaylist.js');
 
 //TOKEN ROUTES
 app.get('/api/login', authorizeSpotify);
@@ -65,9 +69,13 @@ app.get('/api/playlist_recommendation', getPlaylistRecommendation);
 app.post('/api/create_playlist', postCreatePlaylist);
 app.post('/api/add_to_playlist', postAddToPlaylist);
 app.get('/api/general_recommendation', getGeneralRecommendedPlaylist);
-
+app.put('/api/follow', putFollow);
+app.get('/api/follow', getFollow);
+app.put('/api/follow_playlist', putFollowPlaylist);
+app.get('/api/follow_playlist', getFollowPlaylist);
 
 
 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+

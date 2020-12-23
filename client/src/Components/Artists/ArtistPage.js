@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import {Checkmark} from 'react-checkmark';
+import axios from 'axios';
 
 import {isNull, stars} from '../../Utils';
+import {token} from '../../Spotify';
+import setAuthToken from '../../Utils/setAuthToken';
 
 import ArtistTopTracks from './ArtistTopTracks';
 import ArtistAlbums from './ArtistAlbums';
 
-const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
+
+const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
 
   const [numberOfTracks, setNumberOfTracks] = useState(false);
   const [numberOfAlbums, setNumberOfAlbums] = useState(false);
+  const [newFollow, setNewFollow ] = useState(following);
+  const [currentToken, setCurrentToken] = useState('');
+
 
   useEffect(() => {
     if(isNull(artist)) {
         return '';
     }
-    console.log(artist);
-    console.log(albums.items);
-    console.log(relatedArtists);
-    console.log(topTracks);
+    setCurrentToken(token);
+    console.log(following);
   },[]);
 
   const artistStars = stars(artist.popularity);
@@ -42,6 +48,16 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
     );
   }
 
+  const clickFollow = async () => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.put(`/follow?id=${artist.id}&type=artist`);
+      console.log(data);
+      if(data === 'success') {
+        setNewFollow(true);
+      }
+    }
+  }
 
   return (
     <div className='artist-outer-div'>
@@ -69,6 +85,9 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums}) => {
             <p className='artist-label'>Followers</p>
           </div>
         </div>
+        { newFollow ? <div className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div> :
+          <button onClick={clickFollow} className='btn login-btn' >Follow</button>
+        }
         <h3>Top Tracks</h3>
         <ArtistTopTracks list={topTracks.tracks} all={numberOfTracks} />
         {<button onClick={onClickSong} className='btn btn-dark logout-button' >Show {numberOfTracks ? 'less' : 'more'}</button> }

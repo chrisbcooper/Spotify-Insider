@@ -3,10 +3,10 @@ const request = require('request');
 const getFollowPlaylist = async (req, res) => {
     const token = req.header('x-auth-token');
     const id = req.query.id;
-    const type = req.query.type;
+    const user = req.query.user;
     
     const authOptions = {
-        url: `https://api.spotify.com/v1/playlists/${id}/followers/contains`,
+        url: `https://api.spotify.com/v1/playlists/${id}/followers/contains?ids=${user}`,
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ const getFollowPlaylist = async (req, res) => {
         json: true
       };
 
-    await request.put(authOptions, function (error, response, body) {
+    await request.get(authOptions, function (error, response, body) {
       res.send(body);
     });
 

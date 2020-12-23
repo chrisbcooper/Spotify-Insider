@@ -16,6 +16,9 @@ export const getParams = () => {
 }
 
 export const isNull = value => {
+  if(value === false) {
+    return false;
+  }
     return (!value || value == 'undefined' || value == 'null') 
 }
 

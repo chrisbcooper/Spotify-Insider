@@ -15,7 +15,12 @@ const putFollow = async (req, res) => {
       };
 
     await request.put(authOptions, function (error, response, body) {
-      res.send(body);
+      if(response.statusCode === 204) {
+        res.send('success');
+      } else {
+        res.send('failure');
+      }
+      
     });
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
+import {Checkmark} from 'react-checkmark';
 
 import {token} from '../../Spotify';
 import {isNull} from '../../Utils';
@@ -13,12 +14,14 @@ const Playlist = () => {
 
   const [playlist, setPlaylist] = useState();
   const [currentToken, setCurrentToken] = useState('');
+  const [follow, setFollow] = useState();
   const {id} = useParams();
 
   useEffect(() => {
     setCurrentToken(token);
     getPlaylist(id);
-    
+    getFollow();
+
   }, [currentToken]);
 
   const getPlaylist = async (id) => {
@@ -29,6 +32,31 @@ const Playlist = () => {
       setPlaylist(data.playlist);
     }
   }
+
+  const getFollow = async () => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      var response = await axios.get('/current_profile');
+      var user = response.data.body.id;
+      const {data} = await axios.get(`/follow_playlist?id=${id}&user=${user}`);
+      setFollow(data[0]);
+      
+    }
+  }
+  
+  const clickFollow = async () => {
+    setAuthToken(currentToken);
+
+    if(currentToken) {
+      const {data} = await axios.put(`/follow_playlist?id=${id}`);
+      console.log(data);
+      if(data === 'success') {
+        setFollow(true);
+      }
+    }
+  }
+
+
   
   return (
     <div>
@@ -39,6 +67,9 @@ const Playlist = () => {
             <p>{playlist.description}</p>
             <p>{playlist.tracks.total} Tracks</p>
             <a className="btn login-btn" href={`/playlist_recommendations/${playlist.id}/${playlist.name}`}>Get Recommended Playlist</a>
+            { follow ? <div className='user-follow'><div className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
+          <button onClick={clickFollow} className='btn login-btn' >Follow</button>
+        }
         <PlaylistTable playlist={playlist}/>
         </div> :
          <Loader />}

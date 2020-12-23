@@ -14,7 +14,11 @@ const putFollowPlaylist = async (req, res) => {
       };
 
     await request.put(authOptions, function (error, response, body) {
-      res.send(body);
+      if(response.statusCode === 200) {
+        res.send('success');
+      } else {
+        res.send('failure');
+      }
     });
 
 

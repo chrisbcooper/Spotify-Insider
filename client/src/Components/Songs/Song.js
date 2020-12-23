@@ -29,6 +29,7 @@ const Song = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/song?id=${id}`);
+      console.log(data.body);
       setSong(data.body);
     }
   }
@@ -37,15 +38,29 @@ const Song = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/song_audio_analysis?id=${id}`);
+      console.log(data.body)
       setSongAudioAnalysis(data.body);
     }
   }
 
   const getSongAudioFeatures = async (id) => {
     setAuthToken(currentToken);
+    var counter = 0;
     if(currentToken) {
-      const {data} = await axios.get(`/song_audio_features?id=${id}`);
-      setSongAudioFeatures(data.body);
+      while(counter < 5) {
+        const {data} = await axios.get(`/song_audio_features?id=${id}`);
+        console.log(counter)
+        if(isNull(data)) {
+          console.log('null');
+          counter++;
+        } else {
+          console.log(data);
+          setSongAudioFeatures(data);
+          break;
+        }
+        
+      }
+      
     }
   }
 

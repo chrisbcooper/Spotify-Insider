@@ -13,6 +13,7 @@ const Profile = () => {
 
   const [profile, setProfile] = useState();
   const [profilePlaylists, setProfilePlaylists] = useState();
+  const [following, setFollowing] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const {id} = useParams();
 
@@ -20,7 +21,7 @@ const Profile = () => {
     setCurrentToken(token);
     getProfile(id);
     getProfilePlaylists(id);
-    console.log(id);
+    getFollowing(id);
     
   }, [currentToken]);
 
@@ -41,10 +42,20 @@ const Profile = () => {
       setProfilePlaylists(data.body);
     }
   }
+
+  const getFollowing = async (id) => {
+    setAuthToken(currentToken);
+    if(currentToken) {
+      const {data} = await axios.get(`/follow?id=${id}&type=user`);
+      setFollowing(data[0]);
+    }
+  }
   
+
   return (
     <div>
-        {isNull(profile) || isNull(profilePlaylists) ? <Loader />: <ProfilePage profile={profile} playlists={profilePlaylists}/> }
+        {isNull(profile) || isNull(profilePlaylists) || isNull(following) ? <Loader />:
+        <ProfilePage following={following} profile={profile} playlists={profilePlaylists}/> }
     </div>
   );
 };

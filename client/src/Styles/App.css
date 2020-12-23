@@ -377,7 +377,7 @@ li {
   color: var(--light-grey-color);
   font-weight: 500;
   line-height: 0.7rem;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   gap: 15px;
 }
 
@@ -494,4 +494,11 @@ li {
 .playlist-created {
   display: flex;
   flex-direction: row;
+}
+
+.user-follow {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
 }

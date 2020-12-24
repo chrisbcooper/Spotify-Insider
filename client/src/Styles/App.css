@@ -476,6 +476,11 @@ li {
   color: black;
 }
 
+.logout-btn:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
 .home-user-div {
   display: flex;
   flex-direction: column;

@@ -19,7 +19,7 @@ const NavHeader = () => {
                     <a href='/current_playlists'><div className='icon-div'><FontAwesomeIcon className='icon' icon={faListUl} /></div>Playlists</a>
                 </div>
                 <div className='logout-nav'>
-                    <button onClick={logout}><div className='icon-div'><FontAwesomeIcon className='icon' icon={faSignOutAlt} /></div>Logout</button>
+                    <button className='logout-btn' onClick={logout}><div className='icon-div'><FontAwesomeIcon className='icon' icon={faSignOutAlt} /></div>Logout</button>
                 </div>
         </nav>
     );

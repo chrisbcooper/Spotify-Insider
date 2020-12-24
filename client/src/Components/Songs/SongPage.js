@@ -4,15 +4,13 @@ import {isNull, pitchNumber, milliToSeconds} from '../../Utils';
 
 import SongFeaturesChart from './SongFeaturesChart';
 
-const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
+const SongPage = ({song, songAudioFeatures}) => {
 
   useEffect(() => {
     if(isNull(song)) {
         return '';
     }
-    console.log(song);
-    console.log(songAudioAnalysis);
-    console.log(songAudioFeatures);
+
   },[]);
 
   const date = () => {
@@ -55,7 +53,7 @@ const SongPage = ({song, songAudioFeatures, songAudioAnalysis}) => {
           <div className="song-details-2">
             
           </div>   
-        <SongFeaturesChart song={song} songAudioFeatures={songAudioFeatures} songAudioAnalysis={songAudioAnalysis}  />
+        <SongFeaturesChart songAudioFeatures={songAudioFeatures} />
     </div>
       );
 };

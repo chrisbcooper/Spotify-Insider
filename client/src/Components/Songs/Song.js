@@ -12,7 +12,6 @@ import SongPage from './SongPage';
 const Song = () => {
 
   const [song, setSong] = useState();
-  const [songAudioAnalysis, setSongAudioAnalysis] = useState();
   const [songAudioFeatures, setSongAudioFeatures] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const {id} = useParams();
@@ -20,7 +19,6 @@ const Song = () => {
   useEffect(() => {
     setCurrentToken(token);
     getSong(id);
-    getSongAudioAnalysis(id);
     getSongAudioFeatures(id);
     
   }, [currentToken]);
@@ -31,15 +29,6 @@ const Song = () => {
       const {data} = await axios.get(`/api/song?id=${id}`);
       console.log(data.body);
       setSong(data.body);
-    }
-  }
-
-  const getSongAudioAnalysis = async (id) => {
-    setAuthToken(currentToken);
-    if(currentToken) {
-      const {data} = await axios.get(`/api/song_audio_analysis?id=${id}`);
-      console.log(data.body)
-      setSongAudioAnalysis(data.body);
     }
   }
 
@@ -66,8 +55,8 @@ const Song = () => {
 
   return (
     <div className='center'>
-        {isNull(song) || isNull(songAudioAnalysis) || isNull(songAudioFeatures) ? <Loader />:
-         <SongPage song={song} songAudioAnalysis={songAudioAnalysis} songAudioFeatures={songAudioFeatures} /> }
+        {isNull(song) || isNull(songAudioFeatures) ? <Loader />:
+         <SongPage song={song} songAudioFeatures={songAudioFeatures} /> }
     </div>
   );
 };

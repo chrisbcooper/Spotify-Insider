@@ -14,9 +14,8 @@ const getArtistsAlbums = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        res.send({ body });
-      }
+      res.send({ body });
+      
     });
 
 };

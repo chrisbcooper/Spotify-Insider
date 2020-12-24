@@ -13,10 +13,8 @@ const getRecentlyPlayedSongs = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        const musicHistory = body.items;
-        res.send({ musicHistory });
-      }
+      const musicHistory = body.items;
+      res.send({ musicHistory });
     });
 
 

@@ -41,9 +41,7 @@ const getPlaylistRecommendation = async (req, res) => {
         };
 
         await request.get(newAuthOptions, function (err, resp, b) {
-          if (!err && resp.statusCode === 200) { 
-            res.send(b);
-          }
+          res.send(b);
       });
     }
   });

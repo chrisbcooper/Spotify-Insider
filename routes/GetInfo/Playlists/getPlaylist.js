@@ -14,10 +14,8 @@ const getPlaylist = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) { 
-        const playlist = body;
-        res.send({ playlist });
-      }
+      const playlist = body;
+      res.send({ playlist });
     });
 
 

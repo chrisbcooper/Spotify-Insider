@@ -13,10 +13,8 @@ const getCurrentPlaylists = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        const current_playlists = body.items;
-        res.send({ current_playlists });
-      }
+      const current_playlists = body.items;
+      res.send({ current_playlists });
     });
 
 };

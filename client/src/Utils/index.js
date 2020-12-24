@@ -19,7 +19,7 @@ export const isNull = value => {
   if(value === false) {
     return false;
   }
-    return (!value || value == 'undefined' || value == 'null') 
+    return (!value || value === 'undefined' || value === 'null') 
 }
 
 export const stars = (pop) => {

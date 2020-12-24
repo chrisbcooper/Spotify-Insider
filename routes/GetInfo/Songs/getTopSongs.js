@@ -14,10 +14,8 @@ const getTopSongs = async (req, res) => {
       };
 
     await request.get(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) { 
-        const topSongs = body.items;
-        res.send({ topSongs });
-      }
+      const topSongs = body.items;
+      res.send({ topSongs });
     });
 
 

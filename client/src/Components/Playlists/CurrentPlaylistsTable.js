@@ -6,7 +6,6 @@ const CurrentPlaylistsTable = ({list, filter, user}) => {
     if(list.length <= 2) {
       return '';
     }
-    console.log(user);
   },[]);
 
   const GridItem = (item, index) => {

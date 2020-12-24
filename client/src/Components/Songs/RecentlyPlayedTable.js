@@ -8,7 +8,6 @@ const RecentlyPlayedTable = ({list}) => {
     if(list.length <= 2) {
       return '';
     }
-    console.log(list);
   },[]);
 
   const TableItem = (item, index) => {

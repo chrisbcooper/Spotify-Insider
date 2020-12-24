@@ -8,7 +8,6 @@ const PlaylistTable = ({playlist}) => {
     if(isNull(playlist)) {
         return '';
     }
-    console.log(playlist);
   },[]);
 
   const TableItem = (item, index) => {

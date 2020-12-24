@@ -28,7 +28,6 @@ const Playlist = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/playlist?id=${id}`);
-      console.log(data);
       setPlaylist(data.playlist);
     }
   }
@@ -49,7 +48,6 @@ const Playlist = () => {
 
     if(currentToken) {
       const {data} = await axios.put(`/api/follow_playlist?id=${id}`);
-      console.log(data);
       if(data === 'success') {
         setFollow(true);
       }
@@ -61,7 +59,6 @@ const Playlist = () => {
 
     if(currentToken) {
       const {data} = await axios.delete(`/api/unfollow_playlist?id=${id}`);
-      console.log(data);
       if(data === 'success') {
         setFollow(false);
       }

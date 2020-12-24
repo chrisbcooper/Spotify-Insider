@@ -20,8 +20,6 @@ const ProfilePage = ({profile, playlists, following, currentUser}) => {
         return '';
     }
     setCurrentToken(token);
-    console.log(currentUser.id);
-    console.log(profile)
   },[]);
 
   const clickFollow = async () => {
@@ -29,7 +27,6 @@ const ProfilePage = ({profile, playlists, following, currentUser}) => {
 
     if(currentToken) {
       const {data} = await axios.put(`/api/follow?id=${profile.id}&type=user`);
-      console.log(data);
       if(data === 'success') {
         setNewFollow(true);
       }
@@ -41,7 +38,6 @@ const ProfilePage = ({profile, playlists, following, currentUser}) => {
 
     if(currentToken) {
       const {data} = await axios.delete(`/api/unfollow?id=${profile.id}&type=user`);
-      console.log(data);
       if(data === 'success') {
         setNewFollow(false);
       }

@@ -41,7 +41,6 @@ body {
   }
 }
 
-/* Utilities */
 .container {
   padding: 80px;
   margin: 0 auto;
@@ -63,6 +62,8 @@ body {
     padding: 30px 25px;
   }
 }
+
+/* GENERAL  */
 
 a {
   color: var(--light-grey-color);
@@ -87,26 +88,23 @@ a:hover {
   align-items: center;
 }
 
-.playlist-pic {
-  height: 60px;
-  width: 60px;
+.wrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-direction: column;
 }
 
-.playlist-page-pic {
-  height: 180px;
-  width: 180px;
+.loader {
+  margin: 100px auto;
 }
 
-.playlist-page-pic:hover {
-  opacity: 0.5;
-  transition: 0.25s;
+.col {
+  padding: 0 25px;
 }
 
-.profile-pic {
-  height: 125px;
-  width: 125px;
-  border-radius: 50%;
-  margin: 0 auto;
+.btn:focus {
+  outline: none !important;
+  box-shadow: none;
 }
 
 /* NAVBAR */
@@ -171,47 +169,76 @@ button:hover {
   color: #f1f1f1;
 }
 
-@media (max-width: 768px) {
-  .sidenav {
-    top: auto;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    min-height: var(--nav-height);
-    height: var(--nav-height);
-    flex-direction: row;
-    justify-content: center;
-  }
+/* PLAYLIST */
 
-  .spotify-icon {
-    height: 30px;
-  }
+.playlist-pic {
+  height: 60px;
+  width: 60px;
+}
 
-  .sidenav a,
-  button {
-    display: inline;
-    transition: 1s;
-    font-size: 0.7rem;
-  }
+.playlist-page-pic {
+  height: 180px;
+  width: 180px;
+}
 
-  .horizontal-div {
-    flex-direction: row;
-    display: flex;
-    height: 50px;
-    align-items: center;
-  }
+.playlist-page-pic:hover {
+  opacity: 0.5;
+  transition: 0.25s;
+}
 
-  .logout-nav {
-    display: none;
-  }
+.playlist-songs p {
+  color: var(--light-grey-color);
+  font-size: 0.9rem;
+}
 
-  .wrap {
-    font-size: 0.9rem;
-  }
+.playlist-created {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
 
-  li {
-    margin-bottom: 30px;
-  }
+.playlist-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.playlist-follow {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}
+
+/* PROFILE */
+
+.profile-pic {
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.home-user-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-follow {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.genre-list-div {
+  display: flex;
+  text-align: left;
+  background-color: var(--light-grey-color);
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 25px;
+  opacity: 0.65;
 }
 
 /* SONG LIST */
@@ -248,21 +275,8 @@ li {
   margin-bottom: 10px;
 }
 
-.wrap {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  flex-direction: column;
-}
-
 .table-pic-span {
   padding-right: 10px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
 }
 
 .btn-group {
@@ -296,26 +310,22 @@ li {
   padding-right: 0px;
 }
 
-@media (max-width: 768px) {
-  .header {
-    display: block;
-    align-items: center;
-    text-align: center;
-  }
-
-  .btn-group {
-    margin: 30px auto;
-  }
-
-  .table-pic-span img {
-    height: 50px;
-    width: 50px;
-  }
-
-  .name-and-time p {
-    margin-bottom: 5px;
-  }
+.song-page-name {
+  margin-bottom: 20px;
 }
+
+.song-page-outer-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.song-name {
+  margin-top: 20px;
+}
+
+/* ARTIST AND ALBUMS */
 
 .artist-col {
   align-items: center;
@@ -327,23 +337,6 @@ li {
   align-items: center;
   text-align: center;
   margin-bottom: 30px;
-}
-
-@media (max-width: 860px) and (min-width: 768px) {
-  .playlist-page-pic {
-    height: 125px;
-    width: 125px;
-    transition: 1s;
-  }
-}
-
-.loader {
-  margin: 100px auto;
-}
-
-.playlist-songs p {
-  color: var(--light-grey-color);
-  font-size: 0.9rem;
 }
 
 .artist-name {
@@ -406,41 +399,7 @@ li {
   margin: 0 auto;
 }
 
-@media (max-width: 1175px) and (min-width: 991px) {
-  .top-artist-pic {
-    height: 125px;
-    width: 125px;
-    transition: 1s;
-  }
-}
-
-@media (max-width: 880px) and (min-width: 768px) {
-  .top-artist-pic {
-    height: 100px;
-    width: 100px;
-    transition: 1s;
-  }
-}
-
-.song-page-name {
-  margin-bottom: 20px;
-}
-
-.song-page-outer-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.song-name {
-  margin-top: 20px;
-}
-
-.col {
-  padding: 0 25px;
-}
-
+/* LOGIN */
 .login-div {
   position: absolute;
   left: 50%;
@@ -481,48 +440,88 @@ li {
   box-shadow: none;
 }
 
-.home-user-div {
-  display: flex;
-  flex-direction: column;
+@media (max-width: 768px) {
+  .sidenav {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    min-height: var(--nav-height);
+    height: var(--nav-height);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .spotify-icon {
+    height: 30px;
+  }
+
+  .sidenav a,
+  button {
+    display: inline;
+    transition: 1s;
+    font-size: 0.7rem;
+  }
+
+  .horizontal-div {
+    flex-direction: row;
+    display: flex;
+    height: 50px;
+    align-items: center;
+  }
+
+  .logout-nav {
+    display: none;
+  }
+
+  .wrap {
+    font-size: 0.9rem;
+  }
+
+  li {
+    margin-bottom: 30px;
+  }
+
+  .header {
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn-group {
+    margin: 30px auto;
+  }
+
+  .table-pic-span img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .name-and-time p {
+    margin-bottom: 5px;
+  }
 }
 
-.genre-list-div {
-  display: flex;
-  text-align: left;
-  background-color: var(--light-grey-color);
-  margin: 20px 0;
-  padding: 10px;
-  border-radius: 25px;
-  opacity: 0.65;
+@media (max-width: 860px) and (min-width: 768px) {
+  .playlist-page-pic {
+    height: 125px;
+    width: 125px;
+    transition: 1s;
+  }
 }
 
-.playlist-created {
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
+@media (max-width: 1175px) and (min-width: 991px) {
+  .top-artist-pic {
+    height: 125px;
+    width: 125px;
+    transition: 1s;
+  }
 }
 
-.user-follow {
-  display: inline-block;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.playlist-header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-
-.playlist-follow {
-  display: inline-block;
-  align-items: center;
-  text-align: center;
-}
-
-.btn:focus {
-  outline: none !important;
-  box-shadow: none;
+@media (max-width: 880px) and (min-width: 768px) {
+  .top-artist-pic {
+    height: 100px;
+    width: 100px;
+    transition: 1s;
+  }
 }

@@ -64,7 +64,6 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.put(`/api/follow?id=${artist.id}&type=artist`);
-      console.log(data);
       if(data === 'success') {
         setNewFollow(true);
       }
@@ -75,7 +74,6 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.delete(`/api/unfollow?id=${artist.id}&type=artist`);
-      console.log(data);
       if(data === 'success') {
         setNewFollow(false);
       }

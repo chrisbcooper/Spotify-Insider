@@ -27,7 +27,6 @@ const PlaylistRecommendations = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/playlist_recommendation?id=${id}`);
-      console.log(data);
       setPlaylist(data);
     }
   }

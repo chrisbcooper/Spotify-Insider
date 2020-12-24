@@ -6,7 +6,6 @@ const TopArtistsTable = ({list}) => {
     if(list.length <= 2) {
       return '';
     }
-    console.log(list);
   },[list.length]);
 
   const TableItem = (item, index) => {

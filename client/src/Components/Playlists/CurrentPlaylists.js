@@ -26,7 +26,6 @@ const CurrentPlaylists = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/current_playlists`);
-      console.log(data);
       setCurrentPlaylists(data.current_playlists);
     }
   }

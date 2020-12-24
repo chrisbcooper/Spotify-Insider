@@ -8,7 +8,6 @@ const AlbumPage = ({album}) => {
     if(isNull(album)) {
         return '';
     }
-    console.log(album);
   },[]);
 
   const TableItem = (item, index) => {

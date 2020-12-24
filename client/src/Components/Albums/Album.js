@@ -19,9 +19,7 @@ const Album = () => {
 
   useEffect(() => {
     setCurrentToken(token);
-    getAlbum(id);
-    console.log(album);
-    
+    getAlbum(id); 
   }, [currentToken]);
 
   const getAlbum = async (id) => {

@@ -49,14 +49,12 @@ const CurrentProfile = () => {
     
     if(currentToken) {
       const {data} = await axios.get('/api/general_recommendation');
-      console.log(data);
       setRecommendedPlaylist(data);
     }
   }
 
   const changeList = (e) => {
     e.preventDefault();
-    console.log(e.target.name);
     setCurrentTerm(e.target.name);
   }
 

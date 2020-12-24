@@ -31,7 +31,6 @@ const Profile = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/profile?id=${id}`);
-      console.log(data.body);
       setProfile(data.body);
     }
   }
@@ -56,7 +55,6 @@ const Profile = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/current_profile`);
-      console.log(data.body);
       setCurrentUser(data.body);
     }
   }

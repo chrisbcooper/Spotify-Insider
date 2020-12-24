@@ -12,7 +12,6 @@ const RecommendTable = ({playlist, name, id, profile}) => {
     if(isNull(playlist)) {
         return '';
     }
-    console.log(name);
   },[]);
 
   const TableItem = (item, index) => {

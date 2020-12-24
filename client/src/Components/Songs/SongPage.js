@@ -4,13 +4,12 @@ import {isNull, pitchNumber, milliToSeconds} from '../../Utils';
 
 import SongFeaturesChart from './SongFeaturesChart';
 
-const SongPage = ({song, songAudioFeatures}) => {
+const SongPage = ({song, songAudioFeatures, dataAvailable}) => {
 
   useEffect(() => {
     if(isNull(song)) {
         return '';
     }
-
   },[]);
 
   const date = () => {
@@ -28,7 +27,9 @@ const SongPage = ({song, songAudioFeatures}) => {
         <img src={`${song.album.images[0].url}`} alt="" class='playlist-page-pic'/>
         <h2 className='song-name'  >{song.name}</h2>
         <a className='song-page-name' href={`/artist/${song.artists[0].id}`}><p>By: {song.artists[0].name}</p></a>
-        <div className='row song-details justify-content-center'>
+        { !dataAvailable? <p>Song Data not available right now.</p>
+          :<div>
+          <div className='row song-details justify-content-center'>
           <div className='col col-md-auto col-sm-4 col-4' >
             <p>{date()}</p>
             <p className='artist-label' >Released</p>
@@ -54,6 +55,8 @@ const SongPage = ({song, songAudioFeatures}) => {
             
           </div>   
         <SongFeaturesChart songAudioFeatures={songAudioFeatures} />
+        </div>
+        }
     </div>
       );
 };

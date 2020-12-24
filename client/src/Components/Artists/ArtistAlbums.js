@@ -6,7 +6,6 @@ const ArtistAlbums = ({albums, all}) => {
     if(albums.length <= 2) {
       return '';
     }
-    console.log(albums);
   },[]);
 
   const GridItem = (item, index) => {

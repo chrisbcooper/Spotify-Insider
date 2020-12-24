@@ -1,6 +1,5 @@
 const request = require('request');
 const { client_secret, client_id } = require('../../Setters/credentials');
-const spotify = require('../../Setters/credentials');
 
 const refreshToken = async(req, res) => {
 

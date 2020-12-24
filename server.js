@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -103,7 +104,15 @@ app.get('/api/song', getSong);
 app.get('/api/song_audio_analysis', getSongAudioAnalysis);
 app.get('/api/song_audio_features', getSongAudioFeatures);
 
-
+//Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+    //Set the static folder
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
 
 

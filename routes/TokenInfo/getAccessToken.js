@@ -35,7 +35,7 @@ const getAccessToken = (req, res) => {
         })
         .then(res => res.json())
         .then(credentials => {
-            res.redirect(`${process.env.CLIENT_URL}/profile?&access_token=${credentials.access_token}&refresh_token=${credentials.refresh_token}`);
+            res.redirect(`${spotify.client_uri}/profile?&access_token=${credentials.access_token}&refresh_token=${credentials.refresh_token}`);
         })
         
     }

@@ -14,6 +14,8 @@ const getGeneralRecommendedPlaylist = async (req, res) => {
 
     await request.get(authOptions, async function (error, response, body) {
       
+      var playlist;
+      
       if (!error && response.statusCode === 200) { 
         playlist = body;
       }

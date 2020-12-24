@@ -25,7 +25,7 @@ const CurrentProfile = () => {
     getUser();
     getTopGenres(currentTerm);
     getRecommendedPlaylist();
-    
+  
   }, [currentToken, currentTerm]);
 
   const getUser = async () => {
@@ -69,7 +69,7 @@ const CurrentProfile = () => {
         {!isNull(userProfile) && !isNull(topGenres) && !isNull(recommendedPlaylist) ? ( 
         <div className='home-user-div' >
             <h1>{userProfile.display_name}</h1>
-            {isNull(userProfile.images) ? <FontAwesomeIcon className='profile-pic' icon={faUser}/>
+            {userProfile.images.length === 0 ? <FontAwesomeIcon className='profile-pic' icon={faUser}/>
             : <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
             }
             <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>

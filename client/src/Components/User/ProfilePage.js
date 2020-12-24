@@ -20,6 +20,7 @@ const ProfilePage = ({profile, playlists, following}) => {
         return '';
     }
     setCurrentToken(token);
+    console.log(profile.images);
   },[]);
 
   const clickFollow = async () => {
@@ -49,7 +50,7 @@ const ProfilePage = ({profile, playlists, following}) => {
   return (
     <div className='playlist-header'>
         <h1>{profile.display_name}</h1>
-        { isNull(profile.images) ? 
+        { profile.images.length === 0 ? 
           <FontAwesomeIcon className='profile-pic' icon={faUser}/>
           : <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
         }

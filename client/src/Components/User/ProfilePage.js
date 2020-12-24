@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {Checkmark} from 'react-checkmark';
 import axios from 'axios';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faUser} from '@fortawesome/free-solid-svg-icons';
 
 import {isNull} from '../../Utils';
 import {token} from '../../Spotify';

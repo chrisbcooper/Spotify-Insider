@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faUser} from '@fortawesome/free-solid-svg-icons';
 
 import {token, logout} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
@@ -67,7 +69,9 @@ const CurrentProfile = () => {
         {!isNull(userProfile) && !isNull(topGenres) && !isNull(recommendedPlaylist) ? ( 
         <div className='home-user-div' >
             <h1>{userProfile.display_name}</h1>
-            <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
+            {isNull(userProfile.images) ? <FontAwesomeIcon className='profile-pic' icon={faUser}/>
+            : <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
+            }
             <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>
             <div style={{margin: '0 10%'}}>
             <div className='header'>

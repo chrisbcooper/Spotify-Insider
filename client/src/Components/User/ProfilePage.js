@@ -47,7 +47,10 @@ const ProfilePage = ({profile, playlists, following}) => {
   return (
     <div className='playlist-header'>
         <h1>{profile.display_name}</h1>
-        <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
+        { isNull(profile.images) ? 
+          <FontAwesomeIcon className='profile-pic' icon={faUser}/>
+          : <img src={`${profile.images[0].url}`} alt="" className='profile-pic' style={{marginBottom: '30px', marginTop: '15px'}}/>
+        }
         { newFollow ? <div className='user-follow'><div onClick={clickUnfollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
           <button onClick={clickFollow} className='btn login-btn' >Follow</button>
         }

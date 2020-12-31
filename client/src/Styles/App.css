@@ -280,6 +280,15 @@ button:hover {
   text-align: center;
 }
 
+.playlist-btn {
+  background-color: var(--primary-color);
+  margin: 10px auto 15px auto;
+}
+
+.playlist-btn:hover {
+  color: white;
+}
+
 /* PROFILE */
 
 .profile-pic {

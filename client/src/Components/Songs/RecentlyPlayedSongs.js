@@ -21,7 +21,7 @@ const RecentlyPlayedSongs = () => {
   const getMusic = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/api/recently_played_songs');
+      const {data} = await axios.get('/api/recently_played_songs/');
       setMusicHistory(data.musicHistory);
     }
 

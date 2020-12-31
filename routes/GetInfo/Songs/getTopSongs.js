@@ -13,6 +13,7 @@ const getTopSongs = async (req, res) => {
         json: true
       };
 
+      console.log(authOptions);
     await request.get(authOptions, function (error, response, body) {
       const topSongs = body.items;
       res.send({ topSongs });

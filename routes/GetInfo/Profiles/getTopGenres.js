@@ -3,6 +3,7 @@ const request = require('request');
 const getTopGenres = async (req, res) => {
     const token = req.header('x-auth-token');
     const term = req.query.term;
+    console.log('hi')
     
     const authOptions = {
         url: `https://api.spotify.com/v1/me/top/artists?limit=100&time_range=${term}_term`,
@@ -13,7 +14,10 @@ const getTopGenres = async (req, res) => {
         json: true
       };
 
+      console.log(authOptions);
+
     await request.get(authOptions, function (error, response, body) {
+        console.log(body);
         if (!error && response.statusCode === 200) {
         const genres = {};
         const topGenres = [];

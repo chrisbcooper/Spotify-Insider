@@ -4,7 +4,7 @@ const getCurrentUserProfile = async (req, res) => {
     const token = req.header('x-auth-token');
     
     const authOptions = {
-        url: 'https://api.spotify.com/v1/me/',
+        url: 'https://api.spotify.com/v1/me',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

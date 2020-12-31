@@ -25,7 +25,7 @@ const CurrentPlaylists = () => {
   const getPlaylists = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/api/current_playlists`);
+      const {data} = await axios.get(`/api/current_playlists/`);
       setCurrentPlaylists(data.current_playlists);
     }
   }
@@ -33,7 +33,7 @@ const CurrentPlaylists = () => {
   const getUser = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/api/current_profile');
+      const {data} = await axios.get('/api/current_profile/');
       setUserProfile(data.body);
     }
   }

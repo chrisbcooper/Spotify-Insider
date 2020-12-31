@@ -27,7 +27,7 @@ const Playlist = () => {
   const getPlaylist = async (id) => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get(`/api/playlist?id=${id}`);
+      const {data} = await axios.get(`/api/playlist?id=${id}/`);
       setPlaylist(data.playlist);
     }
   }
@@ -35,9 +35,9 @@ const Playlist = () => {
   const getFollow = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      var response = await axios.get('/api/current_profile');
+      var response = await axios.get('/api/current_profile/');
       var user = response.data.body.id;
-      const {data} = await axios.get(`/api/follow_playlist?id=${id}&user=${user}`);
+      const {data} = await axios.get(`/api/follow_playlist?id=${id}&user=${user}/`);
       setFollow(data[0]);
       
     }
@@ -76,7 +76,7 @@ const Playlist = () => {
             <p>{playlist.description}</p>
             <p>{playlist.tracks.total} Tracks</p>
             { follow ? <div className='playlist-follow'><div onClick={clickUnfollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div></div> :
-            <button onClick={clickFollow} className='btn login-btn' >Follow</button> }
+            <button onClick={clickFollow} className='btn playlist-btn' >Follow</button> }
             <a className="btn login-btn" style={{marginTop: '0'}} href={`/playlist_recommendations/${playlist.id}/${playlist.name}`}>Get Recommended Playlist</a>
         <PlaylistTable playlist={playlist}/>
         </div> :

@@ -107,7 +107,7 @@ const ArtistPage = ({artist, relatedArtists, topTracks, albums, following}) => {
           </div>
         </div>
         { newFollow ? <div onClick={clickunFollow} className='playlist-created'><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Following</p></div> :
-          <button onClick={clickFollow} className='btn login-btn' >Follow</button>
+          <button onClick={clickFollow} className='btn playlist-btn' >Follow</button>
         }
         <h3>Top Tracks</h3>
         <ArtistTopTracks list={topTracks.tracks} all={numberOfTracks} />

@@ -10,7 +10,7 @@ const authorizeSpotify = (req, res) => {
         spotify.client_id
     }&redirect_uri=${encodeURI(
         spotify.redirect_uri
-        )}&response_type=code&scope=${scope1} ${scope2} ${scope3}`;
+        )}&response_type=code&scope=${scope1} ${scope2} ${scope3}/`;
 
     res.redirect(url);
 }

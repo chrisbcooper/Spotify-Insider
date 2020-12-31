@@ -31,7 +31,7 @@ const CurrentProfile = () => {
   const getUser = async () => {
     setAuthToken(currentToken);
     if(currentToken) {
-      const {data} = await axios.get('/api/current_profile');
+      const {data} = await axios.get('/api/current_profile/');
       setUserProfile(data.body);
     }
   }
@@ -48,7 +48,7 @@ const CurrentProfile = () => {
     setAuthToken(currentToken);
     
     if(currentToken) {
-      const {data} = await axios.get('/api/general_recommendation');
+      const {data} = await axios.get('/api/general_recommendation/');
       setRecommendedPlaylist(data);
     }
   }

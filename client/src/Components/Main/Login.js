@@ -5,6 +5,7 @@ var link = process.env.NODE_ENV != 'production' ? "http://localhost:5000/api/log
  'http://spotify-insider.herokuapp.com/api/login';
 const Login = () => {
 
+  console.log('hi');
 
   return (
     <div className='login-div'>

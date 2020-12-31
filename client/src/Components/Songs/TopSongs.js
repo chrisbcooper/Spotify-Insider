@@ -23,6 +23,7 @@ const TopSongs = () => {
     setAuthToken(currentToken);
     if(currentToken) {
       const {data} = await axios.get(`/api/top_songs?term=${term}`);
+      console.log(data);
       setTopSongs(data.topSongs);
     }
   }

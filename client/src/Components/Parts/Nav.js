@@ -18,7 +18,7 @@ const NavHeader = () => {
                 </div>
                 <div className='horizontal-div'>
                     {windowWidth < 768 &&
-                        <a href='/'><img class='spotify-icon-horizontal' src={SpotifyIcon} alt=""/></a>}
+                        <a href='/'><img className='spotify-icon-horizontal' src={SpotifyIcon} alt=""/></a>}
                     <a href='/recently_played_songs' className='icon-div' ><FontAwesomeIcon className='icon' icon={faHistory} /><p>Recent</p></a>
                     <a href='/top_songs' className='icon-div'><FontAwesomeIcon className='icon' icon={faMusic} /><p>Top Songs</p></a>
                     <a href='/top_artists' className='icon-div'><FontAwesomeIcon className='icon' icon={faUser} /><p>Top Artists</p></a>

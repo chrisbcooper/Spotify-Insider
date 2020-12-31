@@ -66,11 +66,11 @@ const CurrentProfile = () => {
       <div>
         {!isNull(userProfile) && !isNull(topGenres) && !isNull(recommendedPlaylist) ? ( 
         <div className='home-user-div' >
-            <h1>{userProfile.display_name}</h1>
+            <h1 style={{marginBottom: '0'}}>{userProfile.display_name}</h1>
             {userProfile.images.length === 0 ? <FontAwesomeIcon className='profile-pic' size='5x' icon={faUser}/>
             : <img src={`${userProfile.images[0].url}`} alt="" className='profile-pic' />
             }
-            <button className='btn btn-dark logout-button' onClick={logout}>Logout</button>
+            <button className='btn  home-logout-button' onClick={logout}>Logout</button>
             <div style={{margin: '0 10%'}}>
             <div className='header'>
               <h3>Top Genres</h3>

@@ -56,7 +56,7 @@ return (
     <div className='header'>
         <h3>Recommended {profile ? 'Songs' : `Based on: ${name}`}</h3>
               {created ? <div className='playlist-created' ><Checkmark size={20} /> <p style={{marginLeft: '10px'}}>Playlist Created</p></div>:
-              <div className="btn-group" role="group">
+              <div >
                 <button onClick={createPlaylist}  className='btn login-btn' type="button" >Save to Spotify</button>
                </div>}
           

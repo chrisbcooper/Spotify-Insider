@@ -17,7 +17,6 @@ const getTopGenres = async (req, res) => {
       console.log(authOptions);
 
     await request.get(authOptions, function (error, response, body) {
-        console.log(body);
         if (!error && response.statusCode === 200) {
         const genres = {};
         const topGenres = [];

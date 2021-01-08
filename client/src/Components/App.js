@@ -12,11 +12,12 @@ import HomePage from './Main/HomePage';
 
 function App() {
 
-  const [localToken, setLocalToken] = useState();
+  const [localToken, setLocalToken] = useState('loading');
 
-  useEffect(() => {
+  useEffect(async () => {
     setLocalToken(token);
   }, [localToken]);
+
 
   return (
     <div className="App" >

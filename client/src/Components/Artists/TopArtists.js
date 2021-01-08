@@ -6,10 +6,11 @@ import setAuthToken from '../../Utils/setAuthToken';
 
 import TopArtistsTable from './TopArtistsTable';
 import Loader from '../Parts/Loader';
+import { isNull } from '../../Utils';
 
 const TopArtists = () => {
 
-  const [topArtists, setTopArtists] = useState([{}]);
+  const [topArtists, setTopArtists] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const [currentTerm, setCurrentTerm] = useState('short');
 
@@ -46,7 +47,7 @@ const TopArtists = () => {
               <button onClick={changeList} type="button" name='long' className={rightClassName}>All Time</button>
           </div>
       </div>
-        {topArtists.length !== 1 ? <TopArtistsTable list={topArtists}/>: <Loader />}
+        {!isNull(topArtists) ? <TopArtistsTable list={topArtists}/>: <Loader />}
     </div>
   );
 };

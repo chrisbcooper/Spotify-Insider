@@ -10,7 +10,7 @@ import { isNull } from '../../Utils';
 
 const CurrentPlaylists = () => {
 
-  const [currentPlaylists, setCurrentPlaylists] = useState([{}]);
+  const [currentPlaylists, setCurrentPlaylists] = useState();
   const [currentToken, setCurrentToken] = useState('');
   const [currentList, setCurrentList] = useState('all');
   const [userProfile, setUserProfile] = useState();
@@ -60,7 +60,7 @@ const CurrentPlaylists = () => {
               <button onClick={changeList} type="button" name='other' className={rightClassName}>Other Playlists</button>
           </div>
       </div>
-        {currentPlaylists.length !== 1 && !isNull(userProfile) ? <CurrentPlaylistsTable user={userProfile} filter={currentList} list={currentPlaylists}/>: <Loader />}
+        {!isNull(currentPlaylists) && !isNull(userProfile) ? <CurrentPlaylistsTable user={userProfile} filter={currentList} list={currentPlaylists}/>: <Loader />}
     </div>
   );
 };

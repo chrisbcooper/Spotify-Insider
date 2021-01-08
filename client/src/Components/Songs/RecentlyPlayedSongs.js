@@ -6,10 +6,11 @@ import Loader from '../Parts/Loader';
 
 import {token} from '../../Spotify';
 import setAuthToken from '../../Utils/setAuthToken';
+import { isNull } from '../../Utils';
 
 const RecentlyPlayedSongs = () => {
 
-  const [musicHistory, setMusicHistory] = useState([{}]);
+  const [musicHistory, setMusicHistory] = useState();
   const [currentToken, setCurrentToken] = useState('');
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const RecentlyPlayedSongs = () => {
   return (
     <div>
         <h3>Recently Played Songs</h3>
-        {musicHistory.length !== 1 ? <RecentlyPlayedTable list={musicHistory}/>: <Loader />}
+        {!isNull(musicHistory) ? <RecentlyPlayedTable list={musicHistory}/>: <Loader />}
     </div>
   );
 };

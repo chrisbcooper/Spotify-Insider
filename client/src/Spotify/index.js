@@ -68,8 +68,6 @@ export const receieveAccessToken = () => {
 		return accessToken;
 	}
 
-	console.log(`${localAccessToken} LOCAL ACCESS TOKEN`);
-
 	return localAccessToken;
 };
 

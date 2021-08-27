@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -18,48 +18,37 @@ const CurrentProfile = () => {
 	const [topGenres, setTopGenres] = useState();
 	const [currentTerm, setCurrentTerm] = useState('short');
 
-	const getUser = useCallback(async () => {
+	useEffect(() => {
+		setCurrentToken(token);
+		getUser();
+		getTopGenres(currentTerm);
+		getRecommendedPlaylist();
+	}, [currentToken, currentTerm]);
+
+	const getUser = async () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get('/api/current_profile/');
 			setUserProfile(data.body);
 		}
-	}, [currentToken]);
+	};
 
-	const getTopGenres = useCallback(
-		async (term) => {
-			setAuthToken(currentToken);
-			if (currentToken) {
-				const { data } = await client.get(
-					`/api/top_genres?term=${term}`
-				);
-				setTopGenres(data);
-			}
-		},
-		[currentToken]
-	);
+	const getTopGenres = async (term) => {
+		setAuthToken(currentToken);
+		if (currentToken) {
+			const { data } = await client.get(`/api/top_genres?term=${term}`);
+			setTopGenres(data);
+		}
+	};
 
-	const getRecommendedPlaylist = useCallback(async () => {
+	const getRecommendedPlaylist = async () => {
 		setAuthToken(currentToken);
 
 		if (currentToken) {
 			const { data } = await client.get('/api/general_recommendation/');
 			setRecommendedPlaylist(data);
 		}
-	}, [currentToken]);
-
-	useEffect(() => {
-		setCurrentToken(token);
-		getUser();
-		getTopGenres(currentTerm);
-		getRecommendedPlaylist();
-	}, [
-		currentToken,
-		currentTerm,
-		getRecommendedPlaylist,
-		getUser,
-		getTopGenres,
-	]);
+	};
 
 	const changeList = (e) => {
 		e.preventDefault();

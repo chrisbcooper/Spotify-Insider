@@ -29,6 +29,7 @@ const CurrentProfile = () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get('/api/current_profile/');
+			console.log(data);
 			setUserProfile(data.body);
 		}
 	};
@@ -37,6 +38,7 @@ const CurrentProfile = () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get(`/api/top_genres?term=${term}`);
+			console.log(data);
 			setTopGenres(data);
 		}
 	};
@@ -46,6 +48,7 @@ const CurrentProfile = () => {
 
 		if (currentToken) {
 			const { data } = await client.get('/api/general_recommendation/');
+			console.log(data);
 			setRecommendedPlaylist(data);
 		}
 	};

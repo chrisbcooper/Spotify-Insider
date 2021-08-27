@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 
 import { token } from '../../Spotify';
@@ -12,18 +12,23 @@ const TopSongs = () => {
 	const [currentToken, setCurrentToken] = useState('');
 	const [currentTerm, setCurrentTerm] = useState('short');
 
+	const getSongs = useCallback(
+		async (term) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/top_songs?term=${term}`
+				);
+				setTopSongs(data.topSongs);
+			}
+		},
+		[currentToken]
+	);
+
 	useEffect(() => {
 		setCurrentToken(token);
 		getSongs(currentTerm);
-	}, [currentToken, currentTerm]);
-
-	const getSongs = async (term) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(`/api/top_songs?term=${term}`);
-			setTopSongs(data.topSongs);
-		}
-	};
+	}, [currentToken, currentTerm, getSongs]);
 
 	const changeList = (e) => {
 		e.preventDefault();

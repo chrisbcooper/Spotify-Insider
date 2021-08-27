@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 import { useParams } from 'react-router-dom';
 
@@ -13,20 +13,24 @@ const Album = () => {
 
 	const [album, setAlbum] = useState();
 	const [currentToken, setCurrentToken] = useState('');
+
+	const getAlbum = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(`/api/album?id=${id}`);
+				setAlbum(data.body);
+			}
+		},
+		[currentToken]
+	);
+
 	const { id } = useParams();
 
 	useEffect(() => {
 		setCurrentToken(token);
 		getAlbum(id);
-	}, [currentToken]);
-
-	const getAlbum = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(`/api/album?id=${id}`);
-			setAlbum(data.body);
-		}
-	};
+	}, [currentToken, getAlbum, id]);
 
 	return (
 		<div>{isNull(album) ? <Loader /> : <AlbumPage album={album} />}</div>

@@ -18,7 +18,7 @@ const ProfilePage = ({ profile, playlists, following, currentUser }) => {
 			return '';
 		}
 		setCurrentToken(token);
-	}, []);
+	}, [playlists, profile]);
 
 	const clickFollow = async () => {
 		setAuthToken(currentToken);

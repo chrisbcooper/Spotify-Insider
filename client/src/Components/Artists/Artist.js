@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 import { useParams } from 'react-router-dom';
 
@@ -17,6 +17,69 @@ const Artist = () => {
 	const [currentToken, setCurrentToken] = useState('');
 	const { id } = useParams();
 
+	const getArtist = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(`/api/artist?id=${id}`);
+				setArtist(data.body);
+			}
+		},
+		[currentToken]
+	);
+
+	const getAlbums = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/artist_albums?id=${id}`
+				);
+				setAlbums(data.body);
+			}
+		},
+		[currentToken]
+	);
+
+	const getRelatedArtists = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/artist_related_artists?id=${id}`
+				);
+				setRelatedArtists(data.body);
+			}
+		},
+		[currentToken]
+	);
+
+	const getTopTracks = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/artist_top_tracks?id=${id}`
+				);
+				setTopTracks(data.body);
+			}
+		},
+		[currentToken]
+	);
+
+	const getFollowing = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/follow?id=${id}&type=artist`
+				);
+				setFollowing(data[0]);
+			}
+		},
+		[currentToken]
+	);
+
 	useEffect(() => {
 		setCurrentToken(token);
 		getArtist(id);
@@ -24,53 +87,16 @@ const Artist = () => {
 		getRelatedArtists(id);
 		getTopTracks(id);
 		getFollowing(id);
-	}, [currentToken]);
-
-	const getArtist = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(`/api/artist?id=${id}`);
-			setArtist(data.body);
-		}
-	};
-
-	const getAlbums = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(`/api/artist_albums?id=${id}`);
-			setAlbums(data.body);
-		}
-	};
-
-	const getRelatedArtists = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(
-				`/api/artist_related_artists?id=${id}`
-			);
-			setRelatedArtists(data.body);
-		}
-	};
-
-	const getTopTracks = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(
-				`/api/artist_top_tracks?id=${id}`
-			);
-			setTopTracks(data.body);
-		}
-	};
-
-	const getFollowing = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(
-				`/api/follow?id=${id}&type=artist`
-			);
-			setFollowing(data[0]);
-		}
-	};
+	}, [
+		currentToken,
+		getFollowing,
+		getArtist,
+		getAlbums,
+		getTopTracks,
+		setCurrentToken,
+		getRelatedArtists,
+		id,
+	]);
 
 	return (
 		<div>

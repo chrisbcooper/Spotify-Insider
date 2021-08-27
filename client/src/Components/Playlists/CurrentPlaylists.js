@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 
 import { token } from '../../Spotify';
@@ -13,27 +13,27 @@ const CurrentPlaylists = () => {
 	const [currentList, setCurrentList] = useState('all');
 	const [userProfile, setUserProfile] = useState();
 
-	useEffect(() => {
-		setCurrentToken(token);
-		getPlaylists();
-		getUser();
-	}, [currentToken]);
-
-	const getPlaylists = async () => {
+	const getPlaylists = useCallback(async () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get(`/api/current_playlists/`);
 			setCurrentPlaylists(data.current_playlists);
 		}
-	};
+	}, [currentToken]);
 
-	const getUser = async () => {
+	const getUser = useCallback(async () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get('/api/current_profile/');
 			setUserProfile(data.body);
 		}
-	};
+	}, [currentToken]);
+
+	useEffect(() => {
+		setCurrentToken(token);
+		getPlaylists();
+		getUser();
+	}, [currentToken, getPlaylists, getUser]);
 
 	const changeList = (e) => {
 		e.preventDefault();

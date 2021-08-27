@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 import { useParams } from 'react-router-dom';
 
@@ -14,29 +14,32 @@ const PlaylistRecommendations = () => {
 	const [currentUser, setCurrentUser] = useState();
 	const { id, name } = useParams();
 
-	useEffect(() => {
-		setCurrentToken(token);
-		getPlaylistRecommendation(id);
-		getCurrentUser();
-	}, [currentToken]);
+	const getPlaylistRecommendation = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(
+					`/api/playlist_recommendation?id=${id}`
+				);
+				setPlaylist(data);
+			}
+		},
+		[currentToken]
+	);
 
-	const getPlaylistRecommendation = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(
-				`/api/playlist_recommendation?id=${id}`
-			);
-			setPlaylist(data);
-		}
-	};
-
-	const getCurrentUser = async () => {
+	const getCurrentUser = useCallback(async () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			const { data } = await client.get('/api/current_profile/');
 			setCurrentUser(data.body);
 		}
-	};
+	}, [currentToken]);
+
+	useEffect(() => {
+		setCurrentToken(token);
+		getPlaylistRecommendation(id);
+		getCurrentUser();
+	}, [setCurrentToken, getPlaylistRecommendation, id, getCurrentUser]);
 
 	return (
 		<div>

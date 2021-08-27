@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import client, { setAuthToken } from '../../Utils/client';
 import { useParams } from 'react-router-dom';
 import { Checkmark } from 'react-checkmark';
@@ -15,21 +15,18 @@ const Playlist = () => {
 	const [follow, setFollow] = useState();
 	const { id } = useParams();
 
-	useEffect(() => {
-		setCurrentToken(token);
-		getPlaylist(id);
-		getFollow();
-	}, [currentToken]);
+	const getPlaylist = useCallback(
+		async (id) => {
+			setAuthToken(currentToken);
+			if (currentToken) {
+				const { data } = await client.get(`/api/playlist?id=${id}/`);
+				setPlaylist(data.playlist);
+			}
+		},
+		[currentToken]
+	);
 
-	const getPlaylist = async (id) => {
-		setAuthToken(currentToken);
-		if (currentToken) {
-			const { data } = await client.get(`/api/playlist?id=${id}/`);
-			setPlaylist(data.playlist);
-		}
-	};
-
-	const getFollow = async () => {
+	const getFollow = useCallback(async () => {
 		setAuthToken(currentToken);
 		if (currentToken) {
 			var response = await client.get('/api/current_profile/');
@@ -39,7 +36,13 @@ const Playlist = () => {
 			);
 			setFollow(data[0]);
 		}
-	};
+	}, [currentToken, id]);
+
+	useEffect(() => {
+		setCurrentToken(token);
+		getPlaylist(id);
+		getFollow();
+	}, [currentToken, getFollow, getPlaylist, id]);
 
 	const clickFollow = async () => {
 		setAuthToken(currentToken);

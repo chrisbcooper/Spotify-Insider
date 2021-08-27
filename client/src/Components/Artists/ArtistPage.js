@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Checkmark } from 'react-checkmark';
 import client, { setAuthToken } from '../../Utils/client';
 
@@ -22,6 +22,16 @@ const ArtistPage = ({
 	const [newFollow, setNewFollow] = useState(following);
 	const [currentToken, setCurrentToken] = useState('');
 
+	const checkButtons = useCallback(() => {
+		if (topTracks.tracks.length < 6) {
+			setSongButton(false);
+		}
+
+		if (albums.items.length < 9) {
+			setAlbumButton(false);
+		}
+	}, [albums.items.length, topTracks.tracks.length]);
+
 	useEffect(() => {
 		if (isNull(artist)) {
 			return '';
@@ -29,7 +39,7 @@ const ArtistPage = ({
 		setCurrentToken(token);
 
 		checkButtons();
-	}, []);
+	}, [artist, checkButtons]);
 
 	const artistStars = stars(artist.popularity);
 
@@ -41,16 +51,6 @@ const ArtistPage = ({
 	const onClickAlbum = (e) => {
 		e.preventDefault();
 		setNumberOfAlbums(!numberOfAlbums);
-	};
-
-	const checkButtons = () => {
-		if (topTracks.tracks.length < 6) {
-			setSongButton(false);
-		}
-
-		if (albums.items.length < 9) {
-			setAlbumButton(false);
-		}
 	};
 
 	const Followers = ({ num }) => {
@@ -99,7 +99,7 @@ const ArtistPage = ({
 					<p className='artist-label'>Popularity</p>
 				</div>
 				<div style={{ display: 'inline-block' }}>
-					{artist.genres.length == 0 ? (
+					{artist.genres.length === 0 ? (
 						<p>N/A</p>
 					) : (
 						<ul>

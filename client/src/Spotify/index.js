@@ -27,7 +27,7 @@ export const refreshAccessToken = async () => {
 			window.location.reload();
 			return;
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}
 };

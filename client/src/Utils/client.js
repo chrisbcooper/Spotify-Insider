@@ -7,7 +7,7 @@ const headers = {
 };
 
 const client = axios.create({
-	baseURL: `${process.env.URL}`,
+	baseURL: `${process.env.REACT_APP_URL}`,
 	timeout: 20000,
 	headers: headers,
 });

@@ -5,9 +5,7 @@ var link =
 		? 'http://localhost:5000/api/login/'
 		: 'http://spotify-insider.herokuapp.com/api/login';
 const Login = () => {
-	useEffect(() => {
-		console.log('hi');
-	}, []);
+	useEffect(() => {}, []);
 
 	return (
 		<div className='login-div'>

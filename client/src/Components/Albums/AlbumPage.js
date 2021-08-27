@@ -10,8 +10,6 @@ const AlbumPage = ({ album }) => {
 	}, [album]);
 
 	const TableItem = (item, index) => {
-		console.log(item);
-
 		var seconds = Math.floor(item.duration_ms / 1000);
 		var minutes = Math.floor(seconds / 60);
 		seconds = seconds - 60 * minutes;

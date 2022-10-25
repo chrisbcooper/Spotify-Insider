@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Spotify-Insider/static/css/main.adf4a7f1.chunk.css",
+    "main.js": "/Spotify-Insider/static/js/main.62346f49.chunk.js",
+    "main.js.map": "/Spotify-Insider/static/js/main.62346f49.chunk.js.map",
+    "runtime-main.js": "/Spotify-Insider/static/js/runtime-main.16a7a4f2.js",
+    "runtime-main.js.map": "/Spotify-Insider/static/js/runtime-main.16a7a4f2.js.map",
+    "static/css/2.c4e73993.chunk.css": "/Spotify-Insider/static/css/2.c4e73993.chunk.css",
+    "static/js/2.4864ebeb.chunk.js": "/Spotify-Insider/static/js/2.4864ebeb.chunk.js",
+    "static/js/2.4864ebeb.chunk.js.map": "/Spotify-Insider/static/js/2.4864ebeb.chunk.js.map",
+    "index.html": "/Spotify-Insider/index.html",
+    "static/css/2.c4e73993.chunk.css.map": "/Spotify-Insider/static/css/2.c4e73993.chunk.css.map",
+    "static/css/main.adf4a7f1.chunk.css.map": "/Spotify-Insider/static/css/main.adf4a7f1.chunk.css.map",
+    "static/js/2.4864ebeb.chunk.js.LICENSE.txt": "/Spotify-Insider/static/js/2.4864ebeb.chunk.js.LICENSE.txt",
+    "static/media/SpotifyIcon.6e3d578d.png": "/Spotify-Insider/static/media/SpotifyIcon.6e3d578d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.16a7a4f2.js",
+    "static/css/2.c4e73993.chunk.css",
+    "static/js/2.4864ebeb.chunk.js",
+    "static/css/main.adf4a7f1.chunk.css",
+    "static/js/main.62346f49.chunk.js"
+  ]
+}
